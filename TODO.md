@@ -1,0 +1,3 @@
+- [x] the app title is Kanbang
+- [x] has a favicon [bug?]chrome doesn't display it
+- [ ] starts with a empty basic kanban
