@@ -1,8 +1,8 @@
-import Hello from './components/hello/Hello'
+import Kanban from './components/kanban/Kanban'
 
 const App: React.FC = () => {
   return (
-    <Hello />
+    <Kanban />
   )
 }
 

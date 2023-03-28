@@ -2,8 +2,12 @@ body {
   margin: 0;
   display: flex;
   justify-content: center;
-  font-family: Inter typeface family, sans-serif;
+  font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(184, 135, 11);
+  color:  rgb(70, 51, 4);
 }
+
+
 

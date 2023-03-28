@@ -13,21 +13,34 @@ describe("Kanban", () => {
 
   it("first is called to-do", async () => {
     SUT.render()
-    const firstColumn = screen.getAllByRole('column')[0]
-    const name = firstColumn.getAttribute('data-name')
+    const name = SUT.getNameFromColumn(1)
     expect(name).toBe('to-do')
   })
 
-  it.skip("second is called doing", async () => {
+  it("second is called doing", async () => {
     SUT.render()
-    const secondColumn = screen.getAllByRole('column')[1]
-    const name = secondColumn.getAttribute('data-name')
+    const name = SUT.getNameFromColumn(2)
     expect(name).toBe('doing')
   })
+
+  it("third is called done", async () => {
+    SUT.render()
+    const name = SUT.getNameFromColumn(3)
+    expect(name).toBe('done')
+  })
+
 })
 
 class SUT {
+
   static render() {
     render(<Kanban/>)
+  }
+
+  public static getNameFromColumn(position:number){
+    const ROLE = 'column'
+    const column = screen.getAllByRole(ROLE)[position - 1]
+    const name = column.firstChild?.textContent
+    return name
   }
 }

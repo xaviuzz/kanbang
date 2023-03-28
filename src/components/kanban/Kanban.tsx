@@ -1,11 +1,14 @@
 import React from 'react'
+import Column from './column/Column'
+import './kanban.css'
 
-const Hello:React.FC = ()=>{
-    return <>
-      <div role={'column'} data-name={'to-do'}></div>
-      <div role={'column'}></div>
-      <div role={'column'}></div>
-    </>
+const Kanban:React.FC = ()=>{
+  const columns:Array<string>=['to-do','doing','done']
+  return <span className='kanban'>
+    {columns.map((name) =>(
+      <Column name={name}/>
+    ))}
+  </span>
 }
 
-export default Hello
+export default Kanban
