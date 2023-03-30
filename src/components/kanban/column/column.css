@@ -1,10 +1,7 @@
 .column{
   background-color: rgb(184, 135, 11);
-  border-width: 1px;
-  border-color:rgb(184, 135, 11);
   border-radius: 10px;
-  border-style: solid;
-  box-shadow: 10px 10px 30px rgb(70, 51, 4);
+  box-shadow: 10px 10px 30px rgb(131 96 7);
   display: flex;
   min-height: 30px;
   height: fit-content;
@@ -12,6 +9,7 @@
   min-width: 150px;
   margin: 5px;
   flex-direction: column;
+  padding-bottom: 2rem;
 }
 
 .column-header{

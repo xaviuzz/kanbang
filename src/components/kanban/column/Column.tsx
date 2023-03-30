@@ -11,7 +11,7 @@ const Column:React.FC<ColumnProps> = ({name})=>{
 
   const addCard =()=>{
     const newCards =Array.from(cards) 
-    newCards.push('New card '+cards.length)
+    newCards.push('')
     setCards(newCards)
   }
 
@@ -23,7 +23,7 @@ const Column:React.FC<ColumnProps> = ({name})=>{
       </div>
       <span>
         {cards.map((name) =>(
-          <Card key={name} name={name}/>
+          <Card key={name} title={name}/>
         ))}
       </span>
     </div>

@@ -1,6 +1,6 @@
 - [x] the app title is Kanbang
 - [x] has a favicon [bug?]chrome doesn't display it
 - [x] starts with a empty basic kanban
-- [ ] can create a card
+- [x] can create a card
 - [ ] can move a card forward
 - [ ] can move a card backwards

@@ -1,14 +1,12 @@
 .kanban{
   background-color: rgb(194, 155, 56);
-  border-width: 1px;
-  border-color:rgb(70, 51, 4);
   border-radius: 10px;
-  border-style: solid;
-  box-shadow: 20px 20px 100px rgb(70, 51, 4);
+  box-shadow: 20px 20px 100px rgb(131 96 7);
   display: flex;
   width: 95vw;
   height: 95vh;
   margin: auto;
   margin-top: 2.5vh;
-  justify-content: flex-start; 
+  justify-content: flex-start;
+  padding: 1rem; 
 }
