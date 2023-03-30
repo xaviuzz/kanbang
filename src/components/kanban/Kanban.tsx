@@ -6,7 +6,7 @@ const Kanban:React.FC = ()=>{
   const columns:Array<string>=['to-do','doing','done']
   return <span className='kanban'>
     {columns.map((name) =>(
-      <Column name={name}/>
+      <Column name={name} key={name}/>
     ))}
   </span>
 }

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Card from './card/Card'
 import './column.css'
 
 interface ColumnProps {
@@ -6,7 +7,27 @@ interface ColumnProps {
 }
 
 const Column:React.FC<ColumnProps> = ({name})=>{
-  return <div role='column' className='column'><h1>{name}</h1></div>
+  const[cards,setCards] = useState<Array<string>>([])
+
+  const addCard =()=>{
+    const newCards =Array.from(cards) 
+    newCards.push('New card '+cards.length)
+    setCards(newCards)
+  }
+
+  return (
+    <div role='column' className='column'>
+      <div className='column-header'>
+        <h1>{name}</h1>
+        <button  onClick={addCard}>+</button>
+      </div>
+      <span>
+        {cards.map((name) =>(
+          <Card key={name} name={name}/>
+        ))}
+      </span>
+    </div>
+  )
 }
 
 export default Column

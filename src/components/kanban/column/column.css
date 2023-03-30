@@ -11,9 +11,15 @@
   width: 350px;
   min-width: 150px;
   margin: 5px;
+  flex-direction: column;
 }
 
-.column>h1{
+.column-header{
+  display:flex;
+  flex-direction: row;
+}
+
+.column-header>h1{
   width: 100%;
   text-align: center;
   text-transform: uppercase;
