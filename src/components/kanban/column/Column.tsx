@@ -7,13 +7,16 @@ interface ColumnProps {
   name:string,
   content: Cards,
   onMove: (id:string)=>void
+  onChange: (content: Cards) =>void
 }
 
-const Column:React.FC<ColumnProps> = ({name,content,onMove})=>{
-  const[cards,setCards] = useState<Cards>(content || new Cards())
+const Column:React.FC<ColumnProps> = ({name,content,onMove,onChange})=>{
+  const[cards,setCards] = useState<Cards>(content)
 
   const addCard =()=>{
-    setCards(cards.addNew())
+    const newContent:Cards = cards.addNew()
+    setCards(newContent)
+    onChange(newContent)
   }
 
   const move = (id:string)=>{

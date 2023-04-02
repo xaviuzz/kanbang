@@ -21,28 +21,37 @@ describe("Column", () => {
 
   it("signals card movement", async () => {
     SUT.renderFilled()
-    await SUT.moveCardForward()
+    SUT.moveCardForward()
     expect(SUT.move).toBeCalledWith(SUT.id)
+  })
+
+  it("signals content changes", async () => {
+    SUT.renderFilled()
+    await SUT.addCard()
+    expect(SUT.change).toBeCalled()
   })
 })
 
 class SUT {
   public static readonly NAME:string = 'aName'
   public static move = vi.fn()
+  public static change = vi.fn()
   public static id:string = 'an id'
+  
   public static render() {
-    render(<Column 
-      name={this.NAME}
-      content ={new Cards()}
-      onMove = {SUT.move}
-    />)
+    this.doRender()
   }
 
   public static renderFilled() {
+    this.doRender(new Cards([{id: SUT.id, title:'a Title'}]))
+  }
+
+  private static doRender(content?:Cards) {
     render(<Column 
       name={this.NAME}
-      content ={new Cards([{id: SUT.id, title:'a Title'}])}
+      content ={content||new Cards()}
       onMove = {SUT.move}
+      onChange={SUT.change}
     />)
   }
 

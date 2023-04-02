@@ -31,4 +31,22 @@ describe('Cards',()=>{
     expect(mutated).not.toBe(original)
   })
 
+  it('can retrieve a card',()=>{
+    const aCard:CardDescription={id:'an Id',title:'a card'}
+    const anotherCard:CardDescription={id:'another Id',title:'another card'}
+    const data:Array<CardDescription>=[aCard,anotherCard]
+    const original=new Cards(data)
+    const retrieved:CardDescription = original.retrieve(aCard.id)
+    expect(retrieved).toEqual(aCard)
+  })
+
+  it('can add a card',()=>{
+    const aCard:CardDescription={id:'an Id',title:'a card'}
+    const anotherCard:CardDescription={id:'another Id',title:'another card'}
+    const original=new Cards([aCard])
+    const mutated:Cards = original.add(anotherCard)
+    expect(mutated.data()).toEqual([aCard,anotherCard])
+    expect(mutated).not.toBe(original)
+  })
+
 })

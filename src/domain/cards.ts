@@ -14,11 +14,11 @@ export default class Cards{
   }
 
   public addNew():Cards{
-    this.collection.push({
+    const newCard:CardDescription={
       id: uuid(),
       title: this.EMPTY
-    })
-    return this.clone()
+    }
+    return this.add(newCard)
   }
 
   public remove(toRemove:string):Cards{
@@ -27,8 +27,16 @@ export default class Cards{
     return new Cards(newData)
   }
 
-  private clone():Cards{
-    return  new Cards(this.data())
+  public retrieve(toRetrieve:string):CardDescription{
+    const nullCard:CardDescription = {id: '',title:''}
+    const result:CardDescription = this.collection.find((card)=>card.id == toRetrieve) || nullCard
+    return result
+  }
+
+  public add(aCard:CardDescription):Cards{
+    const newData:Array<CardDescription>=this.data()
+    newData.push(aCard)
+    return new Cards(newData)
   }
   
 }

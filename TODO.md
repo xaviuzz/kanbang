@@ -2,5 +2,7 @@
 - [x] has a favicon [bug?]chrome doesn't display it
 - [x] starts with a empty basic kanban
 - [x] can create a card
+- [ ] titling bubles to column
+- [ ] titling bubbles to kanban
 - [ ] can move a card forward
 - [ ] can move a card backwards
