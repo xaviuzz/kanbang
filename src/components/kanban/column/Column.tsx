@@ -1,17 +1,26 @@
 import React, { useState } from 'react'
 import Card from './card/Card'
 import './column.css'
-
+import uuid from 'uuid-random'
 interface ColumnProps {
   name:string
 }
 
+type CardDescription ={
+  id: string,
+  title: string
+}
+
 const Column:React.FC<ColumnProps> = ({name})=>{
-  const[cards,setCards] = useState<Array<string>>([])
+  const[cards,setCards] = useState<Array<CardDescription>>([])
 
   const addCard =()=>{
     const newCards =Array.from(cards) 
-    newCards.push('')
+    newCards.push({
+      id: uuid(),
+      title: ''
+    })
+
     setCards(newCards)
   }
 
@@ -22,8 +31,8 @@ const Column:React.FC<ColumnProps> = ({name})=>{
         <button  onClick={addCard}>+</button>
       </div>
       <span>
-        {cards.map((name) =>(
-          <Card key={name} title={name}/>
+        {cards.map((card) =>(
+          <Card key={card.id} title={card.title}/>
         ))}
       </span>
     </div>

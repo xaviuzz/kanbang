@@ -14,7 +14,7 @@
   appearance: none;
   border-radius: 3px;
   color: rgb(70, 51, 4);
-  background-color: inherit;
+  background-color: rgb(253, 238, 192);
 }
 
 .card input:focus{
