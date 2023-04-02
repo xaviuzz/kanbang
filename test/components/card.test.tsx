@@ -1,9 +1,10 @@
 
-import { render, screen } from "@testing-library/react"
+import { render, screen,fireEvent } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import React from "react"
 import Card from "../../src/components/kanban/column/card/Card"
 import {act} from 'react-dom/test-utils'
+import {vi} from 'vitest'
 
 describe("Card", () => {
   it("display its title", async () => {
@@ -17,21 +18,37 @@ describe("Card", () => {
     await SUT.typeOnPrompt(aTitle)
     expect(await SUT.getTitle()).toEqual(aTitle)
   })
+
+  it("signals to be moved", async () => {
+    SUT.render()
+    SUT.moveForward()
+    expect(SUT.onMove).toBeCalledWith(SUT.id)
+  })
 })
 
 class SUT {
   static readonly title:string='a title'
-  
+  static readonly onMove = vi.fn()
+  static readonly id = 'an id' 
+
   static render() {
-    render(<Card title={SUT.title}/>)
+    render(<Card 
+      title={SUT.title} 
+      id={SUT.id} 
+      onMove={SUT.onMove}
+    />)
   }
 
   static renderWithoutTitle() {
-    render(<Card title=''/>)
+    render(<Card 
+      title='' 
+      id={SUT.id} 
+      onMove={SUT.onMove}
+    />)
   }
 
   public static async getTitle(){
-    const title = await screen.findByRole('card')
+    const title = await screen.findByRole('heading')
     return title.textContent
   }
 
@@ -40,6 +57,10 @@ class SUT {
       const prompt = screen.queryByRole('textbox')
       await userEvent.type(prompt!,`${literal}{enter}`)
     })
+  }
+
+  public static async moveForward(){
+    fireEvent.click(screen.getByRole('button'))
   }
 
 }

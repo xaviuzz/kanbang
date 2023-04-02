@@ -4,6 +4,12 @@
   margin: 0.5rem;
   border-radius: 0.2rem;
   padding: 0.5rem;
+  display: flex;
+}
+
+.card h2{
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 .card input{

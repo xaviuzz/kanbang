@@ -1,27 +1,24 @@
 import React, { useState } from 'react'
 import Card from './card/Card'
 import './column.css'
-import uuid from 'uuid-random'
+import Cards from '../../../domain/cards'
+
 interface ColumnProps {
-  name:string
+  name:string,
+  content: Cards,
+  onMove: (id:string)=>void
 }
 
-type CardDescription ={
-  id: string,
-  title: string
-}
-
-const Column:React.FC<ColumnProps> = ({name})=>{
-  const[cards,setCards] = useState<Array<CardDescription>>([])
+const Column:React.FC<ColumnProps> = ({name,content,onMove})=>{
+  const[cards,setCards] = useState<Cards>(content || new Cards())
 
   const addCard =()=>{
-    const newCards =Array.from(cards) 
-    newCards.push({
-      id: uuid(),
-      title: ''
-    })
+    setCards(cards.addNew())
+  }
 
-    setCards(newCards)
+  const move = (id:string)=>{
+    setCards(cards.remove(id))
+    onMove(id)
   }
 
   return (
@@ -31,8 +28,13 @@ const Column:React.FC<ColumnProps> = ({name})=>{
         <button  onClick={addCard}>+</button>
       </div>
       <span>
-        {cards.map((card) =>(
-          <Card key={card.id} title={card.title}/>
+        {cards.data().map((card) =>(
+          <Card 
+            key={card.id} 
+            title={card.title} 
+            id={card.id}
+            onMove={move}
+          />
         ))}
       </span>
     </div>

@@ -3,6 +3,8 @@ import userEvent from "@testing-library/user-event"
 import React from "react"
 import { act } from "react-dom/test-utils"
 import Column from '../../src/components/kanban/column/Column'
+import {vi}from 'vitest'
+import Cards from "../../src/domain/cards"
 
 describe("Column", () => {
   it("has a Title with its name", async () => {
@@ -16,13 +18,32 @@ describe("Column", () => {
     await SUT.addCard()
     expect(SUT.countCards()).toEqual(1)
   })
+
+  it("signals card movement", async () => {
+    SUT.renderFilled()
+    await SUT.moveCardForward()
+    expect(SUT.move).toBeCalledWith(SUT.id)
+  })
 })
 
 class SUT {
   public static readonly NAME:string = 'aName'
-  
+  public static move = vi.fn()
+  public static id:string = 'an id'
   public static render() {
-    render(<Column name={this.NAME}/>)
+    render(<Column 
+      name={this.NAME}
+      content ={new Cards()}
+      onMove = {SUT.move}
+    />)
+  }
+
+  public static renderFilled() {
+    render(<Column 
+      name={this.NAME}
+      content ={new Cards([{id: SUT.id, title:'a Title'}])}
+      onMove = {SUT.move}
+    />)
   }
 
   public static title(){
@@ -39,6 +60,11 @@ class SUT {
     await this.typeOnPrompt('a card')
   }
   
+  public static moveCardForward(){
+    const addCTA = screen.getByText('>')
+    fireEvent.click(addCTA)
+  }
+
   private static async typeOnPrompt(literal:string){
     await act(async ()=>{
       const prompt = screen.queryByRole('textbox')
