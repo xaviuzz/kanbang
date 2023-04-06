@@ -38,5 +38,9 @@ export default class Cards{
     newData.push(aCard)
     return new Cards(newData)
   }
+
+  public clone():Cards{
+    return new Cards(this.data())
+  }
   
 }
