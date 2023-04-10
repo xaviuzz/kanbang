@@ -51,7 +51,7 @@ class SUT {
       name={this.NAME}
       content ={content||new Cards()}
       onMove = {SUT.move}
-      onChange={SUT.change}
+      onChange = {SUT.change}
     />)
   }
 

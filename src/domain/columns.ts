@@ -35,6 +35,13 @@ export default class Columns{
     return new Columns(this.data())
   }
 
+  update(from:string , content:Cards):Columns{
+    const indexTo = this.getColumnPosition(from)
+    const column = this.data()[indexTo]
+    column.content = new Cards(content.data())
+    return new Columns(this.data())
+  }
+
   addCardToColumn(indexTo:number,card:CardDescription){
     const theColumn:Cards = this.collection[indexTo].content
     this.collection[indexTo].content = theColumn.add(card)

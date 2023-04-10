@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './card.css'
 
 type cardProps = {
   id: string,
   title: string,
   onMove: (id:string)=>void
+  onChange: (id: string,title:string)=>void
 }
 
-const Card: React.FC<cardProps> = ({id, title, onMove }) => {
+const Card: React.FC<cardProps> = ({id, title, onMove, onChange }) => {
   const [heading, setHeading] = useState<string>(title)
 
   const submitOnEnter = (key: string, value: string): void => {
-    if (key === "Enter") setHeading(value)
+    if (key === "Enter") {
+      setHeading(value)
+      onChange(id,value)
+    }
   }
 
   const moveForward=()=>{

@@ -8,7 +8,11 @@ import Columns from '../../domain/columns'
 const Kanban:React.FC = ()=>{
   const[columns,setColumns]=useState<Columns>(new Columns())
   
-  const changeIn = (target:string,content:Cards)=>{}
+  const changeIn = (target:string,content:Cards)=>{
+    const newColumns = columns.update(target,content)
+    setColumns(newColumns)
+  }
+  
   const move =(from:string , id:string)=>{
     const newColumns = columns.move(from,id)
     setColumns(newColumns)

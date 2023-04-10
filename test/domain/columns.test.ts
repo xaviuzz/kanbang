@@ -43,4 +43,17 @@ describe ('Columns',()=>{
     expect(result.data()[1].content.data()).toEqual([aCard])
   })
 
+  it('can update changes in columns',()=>{
+    const aCard:CardDescription={id:'an Id',title:'a card'}
+    const cards= new Cards().add(aCard)
+    const initial:Array<ColumnDescription>=[
+      {id: '1', name: 'to-do',content:new Cards()},
+      {id: '2', name: 'doing',content:new Cards()},
+      {id: '3', name: 'done',content:new Cards()}
+    ]
+    const columns = new Columns(initial)
+    const result = columns.update('to-do',cards)
+    
+    expect(result.data()[0].content.data()).toEqual(cards.data())
+  })
 })

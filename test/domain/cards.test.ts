@@ -49,4 +49,13 @@ describe('Cards',()=>{
     expect(mutated).not.toBe(original)
   })
 
+  it('can rename a card',()=>{
+    const aCard:CardDescription={id:'an Id',title:'a card'}
+    const anotherCard:CardDescription={id:'another Id',title:'another card'}
+    const original=new Cards([aCard])
+    const mutated:Cards = original.rename(aCard.id,'new title')
+    expect(mutated.data()[0]).toEqual({...aCard, title: 'new title'})
+    expect(mutated).not.toBe(original)
+  })
+
 })

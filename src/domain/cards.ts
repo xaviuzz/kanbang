@@ -39,6 +39,12 @@ export default class Cards{
     return new Cards(newData)
   }
 
+  public rename (id:string,title:string):Cards{
+    const theCard= this.retrieve(id)
+    theCard.title = title
+    return this.clone()
+  }
+
   public clone():Cards{
     return new Cards(this.data())
   }

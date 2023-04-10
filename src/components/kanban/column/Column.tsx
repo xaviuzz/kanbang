@@ -24,6 +24,13 @@ const Column:React.FC<ColumnProps> = ({name,content,onMove,onChange})=>{
     onMove(id)
   }
 
+  const change = (id:string ,title:string)=>{
+    const newContent:Cards = cards.rename(id,title)
+    setCards(newContent)
+    onChange(newContent)
+  }
+
+
   return (
     <div role='column' className='column'>
       <div className='column-header'>
@@ -37,6 +44,7 @@ const Column:React.FC<ColumnProps> = ({name,content,onMove,onChange})=>{
             title={card.title} 
             id={card.id}
             onMove={move}
+            onChange = {change}
           />
         ))}
       </span>
