@@ -26,7 +26,8 @@ describe ('Columns',()=>{
       {id: '3', name: 'done',content:new Cards()}
     ]
     const columns = new Columns()
-    expect(columns.data()).toEqual(defaultKanbang)
+    const expected = defaultKanbang.map((column) =>{return {...column, id: expect.any(String)}})
+    expect(columns.data()).toEqual(expected)
   })
 
   it('can move cards forward',()=>{

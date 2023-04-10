@@ -31,7 +31,6 @@ export default class Columns{
     
     if(indexTo < this.collection.length) {
       this.addCardToColumn(indexTo,theCard)
-      console.log('card added?',JSON.stringify(this.collection))
     }
     return new Columns(this.data())
   }

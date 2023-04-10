@@ -3,6 +3,6 @@
 - [x] starts with a empty basic kanban
 - [x] can create a card
 - [ ] can move a card forward
-- [ ] can move a card backwards
 - [ ] titling bubles to column
 - [ ] titling bubbles to kanban
+- [ ] can move a card backwards

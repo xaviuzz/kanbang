@@ -10,7 +10,6 @@ const Kanban:React.FC = ()=>{
   
   const changeIn = (target:string,content:Cards)=>{}
   const move =(from:string , id:string)=>{
-    console.log(`moving from ${from} the card ${id}`)
     const newColumns = columns.move(from,id)
     setColumns(newColumns)
   }
