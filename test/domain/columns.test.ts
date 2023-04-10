@@ -1,18 +1,16 @@
 import { describe, it } from "vitest";
+import { aCard, defaultKanbang, emptyCards,anyId } from "./fixture";
+import { ColumnDescription } from "../../src/domain/types";
 import Cards from "../../src/domain/cards";
 import Columns from '../../src/domain/columns'
-import { CardDescription, ColumnDescription } from "../../src/domain/types";
 
 describe ('Columns',()=>{
   
   it('returns a deep copy of data',()=>{
-    const defaultKanbang:Array<ColumnDescription>=[
-      {id: '1', name: 'to-do',content:new Cards()},
-      {id: '2', name: 'doing',content:new Cards()},
-      {id: '3', name: 'done',content:new Cards()}
-    ]
     const columns = new Columns(defaultKanbang)
+
     const result:Array<ColumnDescription> = columns.data()
+    
     expect(result).not.toBe(defaultKanbang)
     expect(result).toEqual(defaultKanbang)
     expect(result[0].content).toEqual(defaultKanbang[0].content)
@@ -20,40 +18,46 @@ describe ('Columns',()=>{
   })
 
   it('defaults to default kanbang',()=>{
-    const defaultKanbang:Array<ColumnDescription>=[
-      {id: '1', name: 'to-do',content:new Cards()},
-      {id: '2', name: 'doing',content:new Cards()},
-      {id: '3', name: 'done',content:new Cards()}
-    ]
     const columns = new Columns()
-    const expected = defaultKanbang.map((column) =>{return {...column, id: expect.any(String)}})
-    expect(columns.data()).toEqual(expected)
+
+    const expected = defaultKanbang.map((column) =>{
+      return {
+        ...column, 
+        id: expect.any(String)
+      }
+    })
+    
+    const result:Array<ColumnDescription> = columns.data()
+    expect(result).toEqual(expected)
   })
 
   it('can move cards forward',()=>{
-    const aCard:CardDescription={id:'an Id',title:'a card'}
     const cards= new Cards().add(aCard)
+    const origin:string = 'origin'
+    const destination:string = 'destination'
     const initial:Array<ColumnDescription>=[
-      {id: '1', name: 'to-do',content:cards},
-      {id: '2', name: 'doing',content:new Cards()},
-      {id: '3', name: 'done',content:new Cards()}
+      {id: anyId(), name: origin ,content:cards},
+      {id: anyId(), name: destination,content:emptyCards}
     ]
     const columns = new Columns(initial)
-    const result = columns.move('to-do',aCard.id)
-    expect(result.data()[1].content.data()).toEqual([aCard])
+
+    const result = columns.move(origin,aCard.id)
+    
+    const destinationColumn = result.getColumnByName(destination);
+    expect(destinationColumn.content.data()).toEqual([aCard])
   })
 
   it('can update changes in columns',()=>{
-    const aCard:CardDescription={id:'an Id',title:'a card'}
     const cards= new Cards().add(aCard)
+    const target:string = 'target'
     const initial:Array<ColumnDescription>=[
-      {id: '1', name: 'to-do',content:new Cards()},
-      {id: '2', name: 'doing',content:new Cards()},
-      {id: '3', name: 'done',content:new Cards()}
+      {id: anyId(), name: target,content:new Cards()}
     ]
     const columns = new Columns(initial)
-    const result = columns.update('to-do',cards)
-    
-    expect(result.data()[0].content.data()).toEqual(cards.data())
+   
+    const result = columns.update(target,cards)
+   
+    const destinationColumn: ColumnDescription = result.getColumnByName(target)
+    expect(destinationColumn.content.data()).toEqual(cards.data())
   })
 })

@@ -4,28 +4,31 @@ import './card.css'
 type cardProps = {
   id: string,
   title: string,
-  onMove: (id:string)=>void
-  onChange: (id: string,title:string)=>void
+  onMove: (id: string) => void
+  onChange: (id: string, title: string) => void
 }
 
-const Card: React.FC<cardProps> = ({id, title, onMove, onChange }) => {
+const Card: React.FC<cardProps> = ({ id, title, onMove, onChange }) => {
   const [heading, setHeading] = useState<string>(title)
 
   const submitOnEnter = (key: string, value: string): void => {
-    if (key === "Enter") {
-      setHeading(value)
-      onChange(id,value)
-    }
+    if (key != "Enter") return
+    setHeading(value)
+    onChange(id, value)
   }
 
-  const moveForward=()=>{
+  const moveForward = (): void => {
     onMove(id)
   }
-  
-  if (heading.trim() == '') {
+
+  const noTitle = (): boolean => {
+    return heading.trim() == ''
+  }
+
+  if (noTitle()) {
     return (
       <div role='card' className='card'>
-        <input 
+        <input
           type='text'
           placeholder='lorem ipsum'
           autoFocus={true}

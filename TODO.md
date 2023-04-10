@@ -4,5 +4,5 @@
 - [x] can create a card
 - [x] can move a card forward
 - [x] titling bubles to column
-- [ ] titling bubbles to kanban
+- [x] titling bubbles to kanban
 - [ ] can move a card backwards
