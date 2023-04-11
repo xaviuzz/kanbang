@@ -1,7 +1,7 @@
-import { describe, it } from "vitest";
-import { aCard, defaultKanbang, emptyCards,anyId } from "./fixture";
-import { ColumnDescription } from "../../src/domain/types";
-import Cards from "../../src/domain/cards";
+import { describe, it } from "vitest"
+import { aCard, defaultKanbang, emptyCards,anyId } from "./fixture"
+import { ColumnDescription } from "../../src/domain/types"
+import Cards from "../../src/domain/cards"
 import Columns from '../../src/domain/columns'
 
 describe ('Columns',()=>{
