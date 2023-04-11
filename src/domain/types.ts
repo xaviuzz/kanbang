@@ -1,12 +1,14 @@
 import Cards from "./cards"
 
-export type CardDescription ={
+export type CardDescription = {
   id: string,
   title: string
 }
 
-export type ColumnDescription ={
+export type ColumnDescription = {
   id: string,
   name: string,
   content: Cards
 }
+
+export type Movement = 'forward' | 'backward'

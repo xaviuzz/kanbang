@@ -47,6 +47,22 @@ describe ('Columns',()=>{
     expect(destinationColumn.content.data()).toEqual([aCard])
   })
 
+  it('can move cards backward',()=>{
+    const cards= new Cards().add(aCard)
+    const origin:string = 'origin'
+    const destination:string = 'destination'
+    const initial:Array<ColumnDescription>=[
+      {id: anyId(), name: destination,content:emptyCards},
+      {id: anyId(), name: origin ,content:cards}
+    ]
+    const columns = new Columns(initial)
+
+    const result = columns.move(origin,aCard.id,'backward')
+    
+    const destinationColumn = result.getColumnByName(destination);
+    expect(destinationColumn.content.data()).toEqual([aCard])
+  })
+
   it('can update changes in columns',()=>{
     const cards= new Cards().add(aCard)
     const target:string = 'target'

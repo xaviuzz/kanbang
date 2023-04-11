@@ -5,4 +5,8 @@
 - [x] can move a card forward
 - [x] titling bubles to column
 - [x] titling bubbles to kanban
-- [ ] can move a card backwards
+- [x] can move a card backwards
+- [x] limit movement on edges
+- [ ] persist
+- [ ] export
+- [ ] import

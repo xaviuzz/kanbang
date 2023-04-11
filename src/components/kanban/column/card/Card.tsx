@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
+import { Movement } from '../../../../domain/types'
 import './card.css'
 
 type cardProps = {
   id: string,
   title: string,
-  onMove: (id: string) => void
+  onMove: (id: string, direction:Movement) => void
   onChange: (id: string, title: string) => void
 }
 
@@ -18,7 +19,11 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange }) => {
   }
 
   const moveForward = (): void => {
-    onMove(id)
+    onMove(id,'forward')
+  }
+
+  const moveBackward = (): void => {
+    onMove(id,'backward')
   }
 
   const noTitle = (): boolean => {
@@ -39,8 +44,13 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange }) => {
   } else {
     return (
       <div role='card' className='card'>
+        <button onClick={moveBackward} aria-label ='backward'>
+          &lt;
+        </button>
         <h2>{heading}</h2>
-        <button onClick={moveForward}>&gt;</button>
+        <button onClick={moveForward} aria-label = 'forward'>
+          &gt;
+        </button>
       </div>
     )
   }

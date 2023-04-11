@@ -21,12 +21,22 @@ describe("Column", () => {
     expect(SUT.countCards()).toEqual(1)
   })
 
-  it("signals card movement", async () => {
+  it("signals card forward movement", async () => {
+    vi.resetAllMocks()
     SUT.renderFilled()
     
     SUT.moveCardForward()
     
-    expect(SUT.move).toBeCalledWith(SUT.id)
+    expect(SUT.move).toBeCalledWith(SUT.id,'forward')
+  })
+
+  it("signals card backward movement", async () => {
+    vi.resetAllMocks()
+    SUT.renderFilled()
+    
+    SUT.moveCardBackward()
+    
+    expect(SUT.move).toBeCalledWith(SUT.id,'backward')
   })
 
   it("signals content changes", async () => {
@@ -67,8 +77,13 @@ class SUT {
   }
   
   public static moveCardForward() {
-    const addCTA = screen.getByText('>')
-    fireEvent.click(addCTA)
+    const moveCTA = screen.getByRole('button',{name : 'forward'})
+    fireEvent.click(moveCTA)
+  }
+
+  public static moveCardBackward() {
+    const moveCTA = screen.getByRole('button',{name : 'backward'})
+    fireEvent.click(moveCTA)
   }
   
   private static async typeOnPrompt(literal: string) {

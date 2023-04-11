@@ -23,13 +23,22 @@ describe("Card", () => {
     expect(result).toEqual(aTitle)
   })
 
-  it("signals to be moved", async () => {
+  it("signals to be moved forward", async () => {
     vi.restoreAllMocks()
     SUT.render()
 
     SUT.moveForward()
 
-    expect(SUT.onMove).toBeCalledWith(SUT.id)
+    expect(SUT.onMove).toBeCalledWith(SUT.id,'forward')
+  })
+
+  it("signals to be moved backward", async () => {
+    vi.restoreAllMocks()
+    SUT.render()
+
+    SUT.moveBackward()
+
+    expect(SUT.onMove).toBeCalledWith(SUT.id,'backward')
   })
 
   it("signals changes", async () => {
@@ -70,7 +79,11 @@ class SUT {
   }
 
   public static async moveForward() {
-    fireEvent.click(screen.getByRole('button'))
+    fireEvent.click(screen.getByRole('button',{name: 'forward'}))
+  }
+
+  public static async moveBackward() {
+    fireEvent.click(screen.getByRole('button',{name: 'backward'}))
   }
 
   private static doRender(title: string) {

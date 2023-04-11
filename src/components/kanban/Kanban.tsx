@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Cards from '../../domain/cards'
 import Columns from '../../domain/columns'
+import { Movement } from '../../domain/types'
 import Column from './column/Column'
 import './kanban.css'
 
@@ -13,8 +14,8 @@ const Kanban: React.FC = () => {
     setColumns(newColumns)
   }
 
-  const move = (from: string, id: string): void => {
-    const newColumns = columns.move(from, id)
+  const move = (from: string, id: string,direction:Movement): void => {
+    const newColumns = columns.move(from, id,direction)
     setColumns(newColumns)
   }
 
@@ -24,7 +25,7 @@ const Kanban: React.FC = () => {
         key={column.id}
         name={column.name}
         content={column.content}
-        onMove={(id: string) => { move(column.name, id) }}
+        onMove={(id: string,direction:Movement) => { move(column.name, id,direction) }}
         onChange={(content: Cards) => { changeIn(column.name, content) }}
       />
     ))}

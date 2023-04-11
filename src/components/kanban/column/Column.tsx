@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import Cards from '../../../domain/cards'
+import { Movement } from '../../../domain/types'
 import Card from './card/Card'
 import './column.css'
 
 interface ColumnProps {
   name: string,
   content: Cards,
-  onMove: (id: string) => void
+  onMove: (id: string,destination:Movement) => void
   onChange: (content: Cards) => void
 }
 
@@ -19,9 +20,8 @@ const Column: React.FC<ColumnProps> = ({ name, content, onMove, onChange }) => {
     onChange(newContent)
   }
 
-  const move = (id: string): void => {
-    setCards(cards.remove(id))
-    onMove(id)
+  const move = (id: string,direction:Movement): void => {
+    onMove(id,direction)
   }
 
   const change = (id: string, title: string): void => {
