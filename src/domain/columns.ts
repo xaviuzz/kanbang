@@ -1,6 +1,6 @@
-import Cards from "./cards";
+import uuid from 'uuid-random';
 import { CardDescription, ColumnDescription, Movement } from "./types";
-import uuid from 'uuid-random'
+import Cards from "./cards";
 
 const DEFAULT: Array<ColumnDescription> = [
   { id: uuid(), name: 'to-do', content: new Cards() },
@@ -24,57 +24,57 @@ export default class Columns {
     return this.collection
   }
 
-  public move(from: string, cardId: string, destination:Movement = 'forward'): Columns {
+  public move(from: string, cardId: string, destination: Movement = 'forward'): Columns {
     const indexTo: number = this.calculateNewIndex(from, destination);
-    
+
     this.doMove(from, indexTo, cardId);
 
     return new Columns(this.data())
   }
 
-  
+
   public update(from: string, content: Cards): Columns {
     const column: ColumnDescription = this.getColumnByName(from)
-    
+
     column.content = new Cards(content.data())
     column.id = uuid()
-    
+
     return new Columns(this.data())
   }
-  
+
   public getColumnByName(name: string): ColumnDescription {
-    const found = this.collection.find(column => column.name == name )
-    if (!found) throw Error
+    const found = this.collection.find(column => column.name == name)
+    if (!found) throw Error('No column found')
     return found as ColumnDescription
   }
-  
-  private addCardToColumn(indexTo: number, card: CardDescription):void {
+
+  private addCardToColumn(indexTo: number, card: CardDescription): void {
     const theColumn: Cards = this.collection[indexTo].content
     this.collection[indexTo].content = theColumn.add(card)
     this.collection[indexTo].id = uuid()
   }
-  
-  private removeCardFromColumn(from: string, card: string):void {
+
+  private removeCardFromColumn(from: string, card: string): void {
     const theColumn: ColumnDescription = this.getColumnByName(from)
     theColumn.content = theColumn.content.remove(card)
     theColumn.id = uuid()
   }
-  
+
   private getColumnPosition(name: string): number {
     const theColumn: ColumnDescription = this.getColumnByName(name)
     return this.collection.indexOf(theColumn)
   }
-  
+
   private retrieveCard(from: string, card: string): CardDescription {
     const fromColumn: ColumnDescription = this.getColumnByName(from)
     const theCard: CardDescription = fromColumn.content.retrieve(card)
     return theCard
   }
-  
-  private canMoveTo(index:number):boolean{
-    return index>=0 && index<this.collection.length
+
+  private canMoveTo(index: number): boolean {
+    return index >= 0 && index < this.collection.length
   }
-  
+
   private calculateNewIndex(from: string, destination: Movement) {
     const offsets: Record<Movement, number> = {
       'forward': 1, 'backward': -1
@@ -82,12 +82,12 @@ export default class Columns {
     const indexTo: number = this.getColumnPosition(from) + offsets[destination];
     return indexTo;
   }
-  
+
   private doMove(from: string, to: number, cardId: string) {
     if (!this.canMoveTo(to)) return
-  
+
     const theCard: CardDescription = this.retrieveCard(from, cardId);
-    
+
     this.removeCardFromColumn(from, cardId);
     this.addCardToColumn(to, theCard);
   }

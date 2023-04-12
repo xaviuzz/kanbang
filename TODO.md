@@ -7,6 +7,6 @@
 - [x] titling bubbles to kanban
 - [x] can move a card backwards
 - [x] limit movement on edges
-- [ ] persist
+- [x] persist
 - [ ] export
 - [ ] import
