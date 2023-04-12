@@ -4,10 +4,10 @@ import Cards from '../../domain/cards'
 import Columns from '../../domain/columns'
 import Kanbang from '../../domain/kanban'
 import Column from './column/Column'
-import './kanban.css'
+import './board.css'
 
 
-const Kanban: React.FC = () => {
+const Board: React.FC = () => {
   const [columns, setColumns] = useState<Columns>(new Kanbang())
 
   const changeIn = (target: string, content: Cards): void => {
@@ -20,7 +20,7 @@ const Kanban: React.FC = () => {
     setColumns(newColumns)
   }
 
-  return <span className='kanban'>
+  return <span className='board'>
     {columns.data().map((column) => (
       <Column
         key={column.id}
@@ -33,4 +33,4 @@ const Kanban: React.FC = () => {
   </span>
 }
 
-export default Kanban
+export default Board

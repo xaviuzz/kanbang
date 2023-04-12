@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react"
 import React from "react"
-import Kanban from '../../src/components/kanban/Kanban'
+import Board from '../../src/components/board/Board'
 
-describe("default Kanban", () => {
+describe("default Board", () => {
   it("has three columns", async () => {
     SUT.render()
   
@@ -32,7 +32,7 @@ describe("default Kanban", () => {
 class SUT {
 
   static render() {
-    render(<Kanban />)
+    render(<Board />)
   }
 
   public static getNameFromColumn(position: number) {

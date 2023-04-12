@@ -1,8 +1,8 @@
-import Kanban from './components/kanban/Kanban'
+import Board from './components/board/Board'
 
 const App: React.FC = () => {
   return (
-    <Kanban />
+    <Board />
   )
 }
 
