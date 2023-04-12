@@ -1,14 +1,21 @@
-import React, { useState } from 'react'
-import { Movement } from '../../domain/types'
-import Cards from '../../domain/cards'
-import Columns from '../../domain/columns'
-import Kanbang from '../../domain/kanban'
+import React, { useEffect, useState } from 'react'
+import { Movement } from '../../../domain/types'
+import Cards from '../../../domain/cards'
+import Columns from '../../../domain/columns'
+import Kanban from '../../../domain/kanban'
 import Column from './column/Column'
 import './board.css'
 
+type BoardProps ={
+  kanban:Kanban
+}
 
-const Board: React.FC = () => {
-  const [columns, setColumns] = useState<Columns>(new Kanbang())
+const Board: React.FC<BoardProps> = ({kanban}) => {
+  const [columns, setColumns] = useState<Kanban>(kanban)
+
+  useEffect(()=>{
+    setColumns(kanban)
+  },[kanban])
 
   const changeIn = (target: string, content: Cards): void => {
     const newColumns = columns.update(target, content)

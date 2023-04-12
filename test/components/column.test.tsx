@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event"
 import React from "react"
 import { act } from "react-dom/test-utils"
 import { vi } from 'vitest'
-import Column from '../../src/components/kanban/column/Column'
+import Column from '../../src/components/kanbang/board/column/Column'
 import Cards from "../../src/domain/cards"
 
 describe("Column", () => {

@@ -10,13 +10,13 @@ export default class Kanban extends Columns {
     this.persist()
   }
 
-  public move(from: string, cardId: string, destination: Movement = 'forward'): Columns {
+  public move(from: string, cardId: string, destination: Movement = 'forward'): Kanban {
     const result = super.move(from, cardId, destination)
     this.persist()
     return new Kanban(result.data())
   }
 
-  public update(from: string, content: Cards): Columns {
+  public update(from: string, content: Cards): Kanban {
     const result = super.update(from, content)
     this.persist()
     return new Kanban(result.data())
@@ -24,8 +24,12 @@ export default class Kanban extends Columns {
 
   private static recover(): Array<ColumnDescription> | undefined {
     const persisted: string = localStorage.getItem(Kanban.KEY) || ''
+    return this.hidrate(persisted)
+  }
+
+  private static hidrate(serialized:string):Array<ColumnDescription>|undefined{
     try {
-      const parsed = JSON.parse(persisted)
+      const parsed = JSON.parse(serialized)
       const hidrated: Array<ColumnDescription> = parsed.map((element: any) => {
         return { ...element, content: new Cards(element.content as Array<CardDescription>) }
       })
@@ -35,12 +39,22 @@ export default class Kanban extends Columns {
     }
   }
 
+  public static recoverFrom(serialized:string):Kanban{
+    const hidrated= this.hidrate(serialized)
+    return new Kanban(hidrated)
+  }
+
   private persist() {
-    const flat: Array<object> = this.data().map((column: ColumnDescription) => {
-      return { ...column, content: column.content.data() }
-    })
-    const serialized: string = JSON.stringify(flat)
+    const serialized: string = this.serialize();
     localStorage.setItem(Kanban.KEY, serialized)
   }
 
+
+  public serialize() {
+    const flat: Array<object> = this.data().map((column: ColumnDescription) => {
+      return { ...column, content: column.content.data() };
+    });
+    const serialized: string = JSON.stringify(flat);
+    return serialized;
+  }
 }

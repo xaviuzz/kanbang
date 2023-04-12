@@ -8,5 +8,6 @@
 - [x] can move a card backwards
 - [x] limit movement on edges
 - [x] persist
-- [ ] export
-- [ ] import
+- [x] export
+- [x] import
+- [ ] extract buttons

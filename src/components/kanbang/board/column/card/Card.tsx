@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Movement } from '../../../../domain/types'
+import { Movement } from '../../../../../domain/types'
 import './card.css'
 
 type cardProps = {

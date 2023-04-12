@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event"
 import React from "react"
 import { act } from 'react-dom/test-utils'
 import { vi } from 'vitest'
-import Card from "../../src/components/kanban/column/card/Card"
+import Card from "../../src/components/kanbang/board/column/card/Card"
 
 describe("Card", () => {
   it("display its title", async () => {

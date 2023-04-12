@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Cards from '../../../domain/cards'
-import { Movement } from '../../../domain/types'
+import Cards from '../../../../domain/cards'
+import { Movement } from '../../../../domain/types'
 import Card from './card/Card'
 import './column.css'
 

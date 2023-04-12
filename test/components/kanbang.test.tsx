@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react"
 import React from "react"
-import Board from '../../src/components/board/Board'
+import Kanbang from '../../src/components/kanbang/Kanbang'
 
-describe("default Board", () => {
+describe("default kanbang", () => {
   it("has three columns", async () => {
     SUT.render()
   
@@ -27,12 +27,21 @@ describe("default Board", () => {
     expect(name).toBe('done')
   })
 
+  it("has a button to export data", async () => {
+    SUT.render()
+    expect(screen.getByRole('button',{name:'export'})).toBeInTheDocument()
+  })
+
+  it("has a button to import data", async () => {
+    SUT.render()
+    expect(screen.getByRole('button',{name:'import'})).toBeInTheDocument()
+  })
 })
 
 class SUT {
 
   static render() {
-    render(<Board />)
+    render(<Kanbang />)
   }
 
   public static getNameFromColumn(position: number) {

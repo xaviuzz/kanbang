@@ -1,8 +1,8 @@
-import Board from './components/board/Board'
+import Kanbang from "./components/kanbang/Kanbang"
 
 const App: React.FC = () => {
   return (
-    <Board />
+    <Kanbang />
   )
 }
 
