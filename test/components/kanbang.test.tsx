@@ -26,16 +26,6 @@ describe("default kanbang", () => {
     const name = SUT.getNameFromColumn(3)
     expect(name).toBe('done')
   })
-
-  it("has a button to export data", async () => {
-    SUT.render()
-    expect(screen.getByRole('button',{name:'export'})).toBeInTheDocument()
-  })
-
-  it("has a button to import data", async () => {
-    SUT.render()
-    expect(screen.getByRole('button',{name:'import'})).toBeInTheDocument()
-  })
 })
 
 class SUT {

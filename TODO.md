@@ -10,4 +10,4 @@
 - [x] persist
 - [x] export
 - [x] import
-- [ ] extract buttons
+- [x] extract buttons
