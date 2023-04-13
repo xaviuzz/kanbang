@@ -1,11 +1,23 @@
 import { useRef, useState } from "react"
+import Cards from "../../domain/cards"
 import Kanban from "../../domain/kanban"
+import { Movement } from "../../domain/types"
 import Board from "./board/Board"
 import './kanbang.css'
 
 const Kanbang: React.FC = () => {
   const [kanban,setKanban]=useState<Kanban>(new Kanban())
   const fileUpload=useRef(null)
+
+  const changeIn = (target: string, content: Cards): void => {
+    const newKanban = kanban.update(target, content)
+    setKanban(newKanban)
+  }
+
+  const move = (from: string, id: string, direction: Movement): void => {
+    const newKanban = kanban.move(from, id, direction)
+    setKanban(newKanban)
+  }
 
   const dump=()=>{
     const jsonString:string = `data:text/json;chatset=utf-8,${
@@ -58,7 +70,7 @@ return (
         onChange={onChange}
         style={{display:'none'}}
       />
-      <Board  kanban={kanban}/>
+      <Board  kanban={kanban} onUpdate={changeIn} onMove={move}/>
     </div>
   )
 }
