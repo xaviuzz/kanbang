@@ -16,5 +16,15 @@ A Kanban tool
 ### run all test
   make test
 
+
+## Gitmoji commit legend
+- Bug: :bug: 🐛
+- Refactor: :revolving_hearts: 💞
+- Complete Feature: :tada: 🎉
+- Documentation: :memo: 📝
+- WIP: :building_construction: 🏗️
+- UX: :art: 🎨
+- Fix: :adhesive_bandage: 🩹
+
 ## Authors and acknowledgment
 @XaV1Uzz
