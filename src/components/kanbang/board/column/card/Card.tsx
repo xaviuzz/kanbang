@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Movement } from '../../../../../domain/types'
 import './card.css'
+import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
 
 type cardProps = {
   id: string,
@@ -45,11 +46,11 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange }) => {
     return (
       <div role='card' className='card'>
         <button onClick={moveBackward} aria-label ='backward'>
-          &lt;
+          <FaAngleLeft/>
         </button>
         <h2>{heading}</h2>
         <button onClick={moveForward} aria-label = 'forward'>
-          &gt;
+          <FaAngleRight/>
         </button>
       </div>
     )
