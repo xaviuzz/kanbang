@@ -7,7 +7,7 @@ import './column.css'
 interface ColumnProps {
   name: string,
   content: Cards,
-  onMove: (id: string,destination:Movement) => void
+  onMove: (id: string, destination: Movement) => void
   onChange: (content: Cards) => void
 }
 
@@ -20,12 +20,18 @@ const Column: React.FC<ColumnProps> = ({ name, content, onMove, onChange }) => {
     onChange(newContent)
   }
 
-  const move = (id: string,direction:Movement): void => {
-    onMove(id,direction)
+  const move = (id: string, direction: Movement): void => {
+    onMove(id, direction)
   }
 
   const change = (id: string, title: string): void => {
     const newContent: Cards = cards.rename(id, title)
+    setCards(newContent)
+    onChange(newContent)
+  }
+
+  const remove = (id: string): void => {
+    const newContent: Cards = cards.remove(id)
     setCards(newContent)
     onChange(newContent)
   }
@@ -45,6 +51,7 @@ const Column: React.FC<ColumnProps> = ({ name, content, onMove, onChange }) => {
             id={card.id}
             onMove={move}
             onChange={change}
+            onDelete={remove}
           />
         ))}
       </span>

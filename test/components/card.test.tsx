@@ -23,13 +23,25 @@ describe("Card", () => {
     expect(result).toEqual(aTitle)
   })
 
+  it("submits on losing focus", async () => {
+    const aTitle: string = 'A title'
+    SUT.renderWithoutTitle()
+    const noEnter = false
+
+    await SUT.typeOnPrompt(aTitle, noEnter)
+    await SUT.focusAway()
+
+    const result = await SUT.getTitle()
+    expect(result).toEqual(aTitle)
+  })
+
   it("signals to be moved forward", async () => {
     vi.restoreAllMocks()
     SUT.render()
 
     SUT.moveForward()
 
-    expect(SUT.onMove).toBeCalledWith(SUT.id,'forward')
+    expect(SUT.onMove).toBeCalledWith(SUT.id, 'forward')
   })
 
   it("signals to be moved backward", async () => {
@@ -38,7 +50,7 @@ describe("Card", () => {
 
     SUT.moveBackward()
 
-    expect(SUT.onMove).toBeCalledWith(SUT.id,'backward')
+    expect(SUT.onMove).toBeCalledWith(SUT.id, 'backward')
   })
 
   it("signals changes", async () => {
@@ -56,6 +68,7 @@ class SUT {
   public static readonly title: string = 'a title'
   public static readonly onMove = vi.fn()
   public static readonly onChange = vi.fn()
+  public static readonly onDelete = vi.fn()
   public static readonly id = 'an id'
 
   public static render() {
@@ -65,25 +78,31 @@ class SUT {
   public static renderWithoutTitle() {
     this.doRender('')
   }
-  
+
   public static async getTitle() {
     const title = await screen.findByRole('heading')
     return title.textContent
   }
 
-  public static async typeOnPrompt(literal: string) {
+  public static async typeOnPrompt(literal: string, submit = true) {
     await act(async () => {
+      let characters: string = literal
       const prompt = screen.queryByRole('textbox')
-      await userEvent.type(prompt!, `${literal}{enter}`)
+      if (submit) characters = `${literal}{enter}`
+      await userEvent.type(prompt!, characters)
     })
   }
 
+  public static async focusAway() {
+    fireEvent.blur(screen.getByRole('textbox'))
+  }
+
   public static async moveForward() {
-    fireEvent.click(screen.getByRole('button',{name: 'forward'}))
+    fireEvent.click(screen.getByRole('button', { name: 'forward' }))
   }
 
   public static async moveBackward() {
-    fireEvent.click(screen.getByRole('button',{name: 'backward'}))
+    fireEvent.click(screen.getByRole('button', { name: 'backward' }))
   }
 
   private static doRender(title: string) {
@@ -92,6 +111,7 @@ class SUT {
       id={SUT.id}
       onMove={SUT.onMove}
       onChange={SUT.onChange}
+      onDelete={SUT.onDelete}
     />)
   }
 

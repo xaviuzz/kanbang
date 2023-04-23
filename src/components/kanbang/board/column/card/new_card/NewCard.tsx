@@ -5,7 +5,7 @@ type newCardProps = {
   onSubmit: (title: string) => void
 }
 
-const NewCard: React.FC<newCardProps> = ({  onSubmit }) => {
+const NewCard: React.FC<newCardProps> = ({ onSubmit }) => {
 
   const submitOnEnter = (key: string, value: string): void => {
     if (key != "Enter") return
@@ -13,17 +13,18 @@ const NewCard: React.FC<newCardProps> = ({  onSubmit }) => {
   }
 
 
-    return (
-      <div role='card' className='card new_card'>
-        <input
-          type='text'
-          placeholder='lorem ipsum'
-          autoFocus={true}
-          onKeyDown={(event) => submitOnEnter(event.key, event.currentTarget.value)}
-        />
-      </div>
-    )
-  
+  return (
+    <div role='card' className='card new_card'>
+      <input
+        type='text'
+        placeholder='Lorem ipsum'
+        autoFocus={true}
+        onKeyDown={(event) => submitOnEnter(event.key, event.currentTarget.value)}
+        onBlur={(event) => onSubmit(event.currentTarget.value)}
+      />
+    </div>
+  )
+
 }
 
 export default NewCard

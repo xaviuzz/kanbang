@@ -9,41 +9,50 @@ import Cards from "../../src/domain/cards"
 describe("Column", () => {
   it("has a Title with its name", async () => {
     SUT.render()
-    
+
     expect(SUT.title()).toHaveTextContent(SUT.NAME)
   })
 
   it("has a icon to add a card", async () => {
     SUT.render()
-    
+
     await SUT.addCard()
-    
+
     expect(SUT.countCards()).toEqual(1)
+  })
+
+  it("does not add a card without name", async () => {
+    SUT.render()
+
+    SUT.clickAdd()
+    await SUT.typeOnPrompt('')
+
+    expect(SUT.countCards()).toEqual(0)
   })
 
   it("signals card forward movement", async () => {
     vi.resetAllMocks()
     SUT.renderFilled()
-    
+
     SUT.moveCardForward()
-    
-    expect(SUT.move).toBeCalledWith(SUT.id,'forward')
+
+    expect(SUT.move).toBeCalledWith(SUT.id, 'forward')
   })
 
   it("signals card backward movement", async () => {
     vi.resetAllMocks()
     SUT.renderFilled()
-    
+
     SUT.moveCardBackward()
-    
-    expect(SUT.move).toBeCalledWith(SUT.id,'backward')
+
+    expect(SUT.move).toBeCalledWith(SUT.id, 'backward')
   })
 
   it("signals content changes", async () => {
     SUT.renderFilled()
-    
+
     await SUT.addCard()
-    
+
     expect(SUT.change).toBeCalled()
   })
 })
@@ -65,35 +74,38 @@ class SUT {
   public static title() {
     return screen.getByRole('heading')
   }
-  
+
   public static countCards(): number {
     return screen.queryAllByRole('card').length || 0
   }
-  
+
   public static async addCard() {
-    const addCTA = screen.getByText('+')
-    fireEvent.click(addCTA)
+    this.clickAdd()
     await this.typeOnPrompt('a card')
   }
-  
+
+  public static clickAdd() {
+    const addCTA = screen.getByText('+')
+    fireEvent.click(addCTA)
+  }
+
   public static moveCardForward() {
-    const moveCTA = screen.getByRole('button',{name : 'forward'})
+    const moveCTA = screen.getByRole('button', { name: 'forward' })
     fireEvent.click(moveCTA)
   }
 
   public static moveCardBackward() {
-    const moveCTA = screen.getByRole('button',{name : 'backward'})
+    const moveCTA = screen.getByRole('button', { name: 'backward' })
     fireEvent.click(moveCTA)
   }
-  
-  private static async typeOnPrompt(literal: string) {
+
+  public static async typeOnPrompt(literal: string) {
     await act(async () => {
       const prompt = screen.queryByRole('textbox')
       await userEvent.type(prompt!, `${literal}{enter}`)
     })
-  
   }
-  
+
   private static doRender(content?: Cards) {
     render(<Column
       name={this.NAME}

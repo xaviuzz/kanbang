@@ -7,24 +7,29 @@ import NewCard from './new_card/NewCard'
 type cardProps = {
   id: string,
   title: string,
-  onMove: (id: string, direction:Movement) => void
+  onMove: (id: string, direction: Movement) => void,
   onChange: (id: string, title: string) => void
+  onDelete: (id: string) => void
 }
 
-const Card: React.FC<cardProps> = ({ id, title, onMove, onChange }) => {
+const Card: React.FC<cardProps> = ({ id, title, onMove, onChange, onDelete }) => {
   const [heading, setHeading] = useState<string>(title)
 
-  const doRename = ( value: string): void => {
+  const doRename = (value: string): void => {
+    if (value == '') {
+      onDelete(id)
+      return
+    }
     setHeading(value)
     onChange(id, value)
   }
 
   const moveForward = (): void => {
-    onMove(id,'forward')
+    onMove(id, 'forward')
   }
 
   const moveBackward = (): void => {
-    onMove(id,'backward')
+    onMove(id, 'backward')
   }
 
   const noTitle = (): boolean => {
@@ -33,17 +38,17 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange }) => {
 
   if (noTitle()) {
     return (
-      <NewCard onSubmit={doRename}/>
+      <NewCard onSubmit={doRename} />
     )
   } else {
     return (
       <div role='card' className='card'>
-        <button onClick={moveBackward} aria-label ='backward'>
-          <FaAngleLeft/>
+        <button onClick={moveBackward} aria-label='backward'>
+          <FaAngleLeft />
         </button>
         <h2>{heading}</h2>
-        <button onClick={moveForward} aria-label = 'forward'>
-          <FaAngleRight/>
+        <button onClick={moveForward} aria-label='forward'>
+          <FaAngleRight />
         </button>
       </div>
     )
