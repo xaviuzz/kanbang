@@ -1,0 +1,19 @@
+.new_card input{
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 3px;
+  color: rgb(70, 51, 4);
+  background-color: rgb(253, 238, 192);
+}
+
+.new_card input:focus{
+  outline: none;
+}
+
+.new_card input::placeholder{
+  color: rgb(70, 51, 4);
+  opacity: 0.5;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Movement } from '../../../../../domain/types'
 import './card.css'
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import NewCard from './new_card/NewCard'
 
 type cardProps = {
   id: string,
@@ -13,8 +14,7 @@ type cardProps = {
 const Card: React.FC<cardProps> = ({ id, title, onMove, onChange }) => {
   const [heading, setHeading] = useState<string>(title)
 
-  const submitOnEnter = (key: string, value: string): void => {
-    if (key != "Enter") return
+  const doRename = ( value: string): void => {
     setHeading(value)
     onChange(id, value)
   }
@@ -33,14 +33,7 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange }) => {
 
   if (noTitle()) {
     return (
-      <div role='card' className='card'>
-        <input
-          type='text'
-          placeholder='lorem ipsum'
-          autoFocus={true}
-          onKeyDown={(event) => submitOnEnter(event.key, event.currentTarget.value)}
-        />
-      </div>
+      <NewCard onSubmit={doRename}/>
     )
   } else {
     return (
