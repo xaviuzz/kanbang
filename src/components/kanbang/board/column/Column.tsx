@@ -3,6 +3,7 @@ import Cards from '../../../../domain/cards'
 import { Movement } from '../../../../domain/types'
 import Card from './card/Card'
 import './column.css'
+import { FaPlus } from 'react-icons/fa'
 
 interface ColumnProps {
   name: string,
@@ -41,7 +42,9 @@ const Column: React.FC<ColumnProps> = ({ name, content, onMove, onChange }) => {
     <div role='column' className='column'>
       <div className='column-header'>
         <h1>{name}</h1>
-        <button onClick={addCard}>+</button>
+        <button onClick={addCard}>
+          <FaPlus/>
+        </button>
       </div>
       <span>
         {cards.data().map((card) => (
