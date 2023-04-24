@@ -5,8 +5,8 @@
   -moz-appearance: none;
   appearance: none;
   border-radius: 3px;
-  color: rgb(70, 51, 4);
-  background-color: rgb(253, 238, 192);
+  color: var(--dark-accent);
+  background-color: var(--light-accent);
 }
 
 .new_card input:focus{
@@ -14,6 +14,5 @@
 }
 
 .new_card input::placeholder{
-  color: rgb(70, 51, 4);
   opacity: 0.5;
 }

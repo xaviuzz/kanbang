@@ -1,10 +1,11 @@
+
 body {
   margin: 0;
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(184, 135, 11);
-  color:  rgb(70, 51, 4);
+  background-color: var(--background);
+  color:  var(--foreground);
 }
 
 

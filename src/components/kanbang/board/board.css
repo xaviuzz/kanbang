@@ -1,7 +1,7 @@
 .board{
-  background-color: rgb(194, 155, 56);
+  background-color: var(--surface);
   border-radius: 10px;
-  box-shadow: 20px 20px 100px rgb(131 96 7);
+  box-shadow: 10px 10px 30px var(--dark-accent);
   display: flex;
   width: 95vw;
   height: 95vh;

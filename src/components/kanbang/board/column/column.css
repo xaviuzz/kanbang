@@ -1,7 +1,7 @@
 .column{
-  background-color: rgb(184, 135, 11);
+  background-color: var(--background);
   border-radius: 10px;
-  box-shadow: 10px 10px 30px rgb(131 96 7);
+  box-shadow: 10px 10px 30px var(--dark-accent);
   display: flex;
   min-height: 30px;
   height: fit-content;
@@ -27,10 +27,11 @@
 }
 
 .column button{
+  color: var(--dark-accent);
   margin: 1rem;
   font-size: 1.5rem;
   font-weight: bolder;
-  background-color:rgb(227, 213, 170);
+  background-color:var(--surface);
   border-radius: 2rem;
   width: 2rem;
   height: 2rem;
