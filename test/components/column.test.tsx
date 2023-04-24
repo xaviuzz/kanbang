@@ -85,7 +85,7 @@ class SUT {
   }
 
   public static clickAdd() {
-    const addCTA = screen.getByText('+')
+    const addCTA = screen.getByRole('button', { name: 'add card' })
     fireEvent.click(addCTA)
   }
 

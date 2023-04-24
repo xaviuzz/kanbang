@@ -12,20 +12,6 @@
   padding-bottom: 2rem;
 }
 
-.column-header{
-  display:flex;
-  flex-direction: row;
-}
-
-.column-header>h1{
-  width: 100%;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 1.5rem;
-  margin: 1rem;
-
-}
-
 .column button{
   color: var(--dark-accent);
   margin: 1rem;
