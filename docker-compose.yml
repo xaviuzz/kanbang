@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  app:
+  kanbang-app:
     user: node
     build: ./
     volumes:
@@ -9,6 +9,6 @@ services:
       - /app/node_modules/
     ports: 
       - 4000:4000
-    container_name: seed
+    container_name: kangbang
 
  
