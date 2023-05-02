@@ -53,6 +53,15 @@ describe("Card", () => {
     expect(SUT.onMove).toBeCalledWith(SUT.id, 'backward')
   })
 
+  it("signals to be removed", async () => {
+    vi.restoreAllMocks()
+    SUT.render()
+
+    SUT.delete()
+
+    expect(SUT.onDelete).toBeCalledWith(SUT.id)
+  })
+
   it("signals changes", async () => {
     const newTitle: string = 'new title'
     vi.restoreAllMocks()
@@ -103,6 +112,10 @@ class SUT {
 
   public static async moveBackward() {
     fireEvent.click(screen.getByRole('button', { name: 'backward' }))
+  }
+
+  public static async delete() {
+    fireEvent.click(screen.getByRole('button', { name: 'delete' }))
   }
 
   private static doRender(title: string) {

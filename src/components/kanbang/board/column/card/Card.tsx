@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Movement } from '../../../../../domain/types'
 import './card.css'
-import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'
+import { FaAngleLeft, FaAngleRight, FaCross } from 'react-icons/fa'
 import NewCard from './new_card/NewCard'
 
 type cardProps = {
@@ -54,6 +54,11 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange, onDelete }) =>
         <div className='moving-action'>
           <button onClick={moveForward} aria-label='forward'>
             <FaAngleRight />
+          </button>
+        </div>
+        <div className='delete-action'>
+          <button onClick={(e)=>onDelete(id)} aria-label='delete'>
+            <FaCross />
           </button>
         </div>
       </div>
