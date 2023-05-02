@@ -5,9 +5,25 @@
   border-radius: 0.2rem;
   padding: 0.5rem;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.card .moving-action{
+  visibility: hidden;
+}
+
+.card:hover .moving-action{
+  visibility: visible;
+}
+
+.card .moving-action button{
+  margin: 0rem;
 }
 
 .card h2{
+  margin: 0rem 0.5rem;
   font-size: inherit;
   font-weight: inherit;
 }

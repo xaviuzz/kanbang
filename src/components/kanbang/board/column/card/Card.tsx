@@ -43,13 +43,19 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange, onDelete }) =>
   } else {
     return (
       <div role='card' className='card'>
-        <button onClick={moveBackward} aria-label='backward'>
-          <FaAngleLeft />
-        </button>
-        <h2>{heading}</h2>
-        <button onClick={moveForward} aria-label='forward'>
-          <FaAngleRight />
-        </button>
+        <div className='moving-action'>
+          <button onClick={moveBackward} aria-label='backward'>
+            <FaAngleLeft />
+          </button>
+        </div>
+        <div className='card-content'>
+          <h2>{heading}</h2>
+        </div>
+        <div className='moving-action'>
+          <button onClick={moveForward} aria-label='forward'>
+            <FaAngleRight />
+          </button>
+        </div>
       </div>
     )
   }
