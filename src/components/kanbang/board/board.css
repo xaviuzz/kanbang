@@ -4,7 +4,7 @@
   box-shadow: 10px 10px 30px var(--dark-accent);
   display: flex;
   width: 95vw;
-  height: 93vh;
+  min-height: 93vh;
   margin: auto;
   justify-content: flex-start;
   padding: 1rem; 
