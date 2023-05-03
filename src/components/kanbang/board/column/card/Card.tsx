@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Movement } from '../../../../../domain/types'
 import './card.css'
 import { FaAngleLeft, FaAngleRight, FaCross } from 'react-icons/fa'
-import NewCard from './new_card/NewCard'
+import NewCard from './newCard/NewCard'
 
 type cardProps = {
   id: string,
@@ -43,7 +43,7 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange, onDelete }) =>
   } else {
     return (
       <div role='card' className='card'>
-        <div className='moving-action'>
+        <div className='card-moving'>
           <button onClick={moveBackward} aria-label='backward'>
             <FaAngleLeft />
           </button>
@@ -51,12 +51,12 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange, onDelete }) =>
         <div className='card-content'>
           <h2>{heading}</h2>
         </div>
-        <div className='moving-action'>
+        <div className='card-moving'>
           <button onClick={moveForward} aria-label='forward'>
             <FaAngleRight />
           </button>
         </div>
-        <div className='delete-action'>
+        <div className='card-delete'>
           <button onClick={(e)=>onDelete(id)} aria-label='delete'>
             <FaCross />
           </button>

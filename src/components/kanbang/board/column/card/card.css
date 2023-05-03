@@ -10,15 +10,15 @@
 }
 
 
-.card .moving-action{
+.card .card-moving{
   visibility: hidden;
 }
 
-.card:hover .moving-action{
+.card:hover .card-moving{
   visibility: visible;
 }
 
-.card .moving-action button{
+.card .card-moving button{
   margin: 0rem;
 }
 
