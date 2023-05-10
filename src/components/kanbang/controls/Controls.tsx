@@ -2,15 +2,14 @@ import { useRef } from "react"
 import { FaFileUpload, FaSave } from "react-icons/fa"
 import Kanban from "../../../domain/kanban"
 import './controls.css'
+import { useKanban } from "../../../context/kanban"
 
-type ControlsProps={
-  kanban:Kanban,
-  onLoad:(kanban:Kanban)=>void
-}
 
-const Controls:React.FC<ControlsProps> =({kanban,onLoad})=>{
+const Controls:React.FC =()=>{
   const fileUpload=useRef(null)
+  const {kanban,load} = useKanban()
 
+  
   const dump=()=>{
     const serialized:string = `data:text/json;chatset=utf-8,${
       kanban.serialize()
@@ -37,7 +36,7 @@ const Controls:React.FC<ControlsProps> =({kanban,onLoad})=>{
   const reLoad=(event:any)=>{
     const loaded:string = event.target.result
     const recovered:Kanban = Kanban.recoverFrom(loaded)
-    onLoad(recovered)
+    load(recovered)
   }
 
   return ( 

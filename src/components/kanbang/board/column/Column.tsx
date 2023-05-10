@@ -4,37 +4,36 @@ import { Movement } from '../../../../domain/types'
 import Card from './card/Card'
 import './column.css'
 import Header from './header/Header'
+import { useKanban } from '../../../../context/kanban'
 
 interface ColumnProps {
   name: string,
-  content: Cards,
-  onMove: (id: string, destination: Movement) => void
-  onChange: (content: Cards) => void
 }
 
-const Column: React.FC<ColumnProps> = ({ name, content, onMove, onChange }) => {
-  const [cards, setCards] = useState<Cards>(content)
+const Column: React.FC<ColumnProps> = ({ name}) => {
+  const {update,moveCard,getColumn} = useKanban()
+  const [cards, setCards] = useState<Cards>(getColumn(name))
 
   const addCard = (): void => {
     const newContent: Cards = cards.addNew()
     setCards(newContent)
-    onChange(newContent)
+    update(name,newContent)
   }
 
   const move = (id: string, direction: Movement): void => {
-    onMove(id, direction)
+    moveCard(name,id, direction)
   }
 
   const change = (id: string, title: string): void => {
     const newContent: Cards = cards.rename(id, title)
     setCards(newContent)
-    onChange(newContent)
+    update(name,newContent)
   }
 
   const remove = (id: string): void => {
     const newContent: Cards = cards.remove(id)
     setCards(newContent)
-    onChange(newContent)
+    update(name,newContent)
   }
 
 

@@ -18,13 +18,13 @@ A Kanban tool
 
 
 ## Gitmoji commit legend
-- Bug: :bug: 🐛
-- Refactor: :revolving_hearts: 💞
-- Complete Feature: :tada: 🎉
-- Documentation: :memo: 📝
-- WIP: :building_construction: 🏗️
-- UX: :art: 🎨
-- Fix: :adhesive_bandage: 🩹
+- Bug: `:bug:` 🐛
+- Refactor: `:revolving_hearts:` 💞
+- Complete Feature: `:tada:` 🎉
+- Documentation: `:memo:` 📝
+- WIP: `:building_construction:` 🏗️
+- UX: `:art:` 🎨
+- Fix: `:adhesive_bandage:` 🩹
 
 ## Authors and acknowledgment
 @XaV1Uzz
