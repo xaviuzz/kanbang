@@ -5,18 +5,22 @@ import { Movement } from "../domain/types"
 
 interface KanbanContextAPI{
   kanban: Kanban
-  update: (target:string, content:Cards)=>void
-  moveCard: (from:string, id:string, direction:Movement)=>void
+  move: (from:string, id:string, direction:Movement)=>void
   load: (newKanban:Kanban)=>void
   getColumn: (name:string)=>Cards
+  add: (columnName: string)=>void
+  rename: (columnName: string,id:string,title:string)=>void
+  remove: (columnName: string,id:string)=>void
 }
 
 const KanbanContext = React.createContext<KanbanContextAPI>({
   kanban: new Kanban(),
-  update: ()=>{},
-  moveCard: ()=>{},
+  move: ()=>{},
   load: ()=>{},
-  getColumn: ()=>{return new Cards()}  
+  getColumn: ()=>{return new Cards()},
+  add: ()=>{}  ,
+  rename:()=>{},
+  remove:()=>{}
 })
 
 interface withKanbanProps {
@@ -31,7 +35,7 @@ const WithKanban:React.FC<withKanbanProps> =({children})=>{
     setKanban(kanban.update(target,content))
   }
 
-  const moveCard = (from:string, id:string, direction:Movement):void=>{
+  const move = (from:string, id:string, direction:Movement):void=>{
     setKanban(kanban.move(from,id,direction))
   }
 
@@ -43,12 +47,32 @@ const WithKanban:React.FC<withKanbanProps> =({children})=>{
     return kanban.getColumnByName(name).content
   }
 
+  const add=(columnName:string)=>{
+    const theColumn=getColumn(columnName)
+    const newContent: Cards = theColumn.addNew()
+    update(columnName,newContent)
+  }
+
+  const  rename=(columnName:string, id:string, title:string)=> {
+    const theColumn=getColumn(columnName)
+    const newContent: Cards = theColumn.rename(id, title)
+    update(columnName,newContent)      
+  }
+
+  const remove=(columnName:string,id:string)=>{
+    const theColumn=getColumn(columnName)
+    const newContent: Cards = theColumn.remove(id)
+    update(columnName,newContent)
+  }
+
   const value:KanbanContextAPI={
     kanban,
-    update,
-    moveCard,
+    move,
     load,
-    getColumn
+    getColumn,
+    add,
+    rename,
+    remove
   }
   return <KanbanContext.Provider value={value}>{children}</KanbanContext.Provider>
 }

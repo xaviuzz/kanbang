@@ -7,9 +7,9 @@ import NewCard from './newCard/NewCard'
 type cardProps = {
   id: string,
   title: string,
-  onMove: (id: string, direction: Movement) => void,
-  onChange: (id: string, title: string) => void
-  onDelete: (id: string) => void
+  onMove: ( direction: Movement) => void,
+  onChange: ( title: string) => void
+  onDelete: () => void
 }
 
 const Card: React.FC<cardProps> = ({ id, title, onMove, onChange, onDelete }) => {
@@ -17,19 +17,19 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange, onDelete }) =>
 
   const doRename = (value: string): void => {
     if (value == '') {
-      onDelete(id)
+      onDelete()
       return
     }
     setHeading(value)
-    onChange(id, value)
+    onChange(value)
   }
 
   const moveForward = (): void => {
-    onMove(id, 'forward')
+    onMove('forward')
   }
 
   const moveBackward = (): void => {
-    onMove(id, 'backward')
+    onMove( 'backward')
   }
 
   const noTitle = (): boolean => {
@@ -57,7 +57,7 @@ const Card: React.FC<cardProps> = ({ id, title, onMove, onChange, onDelete }) =>
           </button>
         </div>
         <div className='card-delete'>
-          <button onClick={(e)=>onDelete(id)} aria-label='delete'>
+          <button onClick={onDelete} aria-label='delete'>
             <FaCross />
           </button>
         </div>

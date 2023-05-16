@@ -41,7 +41,7 @@ describe("Card", () => {
 
     SUT.moveForward()
 
-    expect(SUT.onMove).toBeCalledWith(SUT.id, 'forward')
+    expect(SUT.onMove).toBeCalledWith('forward')
   })
 
   it("signals to be moved backward", async () => {
@@ -50,7 +50,7 @@ describe("Card", () => {
 
     SUT.moveBackward()
 
-    expect(SUT.onMove).toBeCalledWith(SUT.id, 'backward')
+    expect(SUT.onMove).toBeCalledWith( 'backward')
   })
 
   it("signals to be removed", async () => {
@@ -59,7 +59,7 @@ describe("Card", () => {
 
     SUT.delete()
 
-    expect(SUT.onDelete).toBeCalledWith(SUT.id)
+    expect(SUT.onDelete).toBeCalled()
   })
 
   it("signals changes", async () => {
@@ -69,7 +69,7 @@ describe("Card", () => {
 
     await SUT.typeOnPrompt(newTitle)
 
-    expect(SUT.onChange).toBeCalledWith(expect.any(String), newTitle)
+    expect(SUT.onChange).toBeCalledWith(newTitle)
   })
 })
 
