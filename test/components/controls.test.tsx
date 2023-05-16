@@ -19,7 +19,7 @@ describe("Controls", () => {
 class SUT {
 
   static render() {
-    render(<Controls kanban={new Kanban()} onLoad={()=>{}}/>)
+    render(<Controls/>)
   }
 
   

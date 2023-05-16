@@ -8,6 +8,28 @@ import Cards from "../../src/domain/cards"
 import Kanban from "../../src/domain/kanban"
 import { WithKanban } from "../../src/context/kanban"
 
+const getColumn = vi.fn()
+const move = vi.fn()
+const change = vi.fn()
+
+vi.mock("../../src/context/kanban",async ()=>{
+  const actual:object = await vi.importActual("../../src/context/kanban")
+  
+  const useKanban= ()=>{
+    return {
+      kanban: new Kanban(),
+      update: change,
+      moveCard: move,
+      load: ()=>{},
+      getColumn: getColumn   
+    }
+  }
+  
+  return {
+    ...actual,
+    useKanban
+  }})
+
 describe("Column", () => {
   it("has a Title with its name", async () => {
     SUT.render()
@@ -31,19 +53,19 @@ describe("Column", () => {
     vi.resetAllMocks()
     SUT.renderFilled()
     SUT.moveCardForward()
-    expect(SUT.move).toBeCalledWith(SUT.id, 'forward')
+    expect(SUT.move).toBeCalledWith(SUT.NAME, SUT.id, 'forward')
   })
 
-  it.skip("signals card backward movement", async () => {
+  it("signals card backward movement", async () => {
     vi.resetAllMocks()
     SUT.renderFilled()
 
     SUT.moveCardBackward()
 
-    expect(SUT.move).toBeCalledWith(SUT.id, 'backward')
+    expect(SUT.move).toBeCalledWith(SUT.NAME, SUT.id, 'backward')
   })
 
-  it.skip("signals content changes", async () => {
+  it("signals content changes", async () => {
     SUT.renderFilled()
 
     await SUT.addCard()
@@ -54,8 +76,8 @@ describe("Column", () => {
 
 class SUT {
   public static readonly NAME: string = 'aName'
-  public static move = vi.fn()
-  public static change = vi.fn()
+  public static move = move
+  public static change = change
   public static id: string = 'an id'
 
   public static render() {
@@ -103,7 +125,7 @@ class SUT {
 
 
   private static doRender(content?: Cards) {
-    this.mockContext(content)
+    this.mockContent(content)
     render(
       <WithKanban>
         <Column name={this.NAME}/>
@@ -111,29 +133,9 @@ class SUT {
     )
   }
 
-  private static mockContext(content?: Cards):void{
-    
-    vi.mock("../../src/context/kanban",async ()=>{
-      const cards = content || new Cards()
-      console.log('------------>',cards)
-      const actual:object = await vi.importActual("../../src/context/kanban")
-      const getColumn = vi.fn().mockReturnValue(cards)
-      
-      const useKanban= ()=>{
-        console.log('context')
-        return {
-          kanban: new Kanban(),
-          update: ()=>{},
-          moveCard: ()=>{},
-          load: ()=>{},
-          getColumn: getColumn   
-        }
-      }
-      
-      return {
-        ...actual,
-        useKanban
-      }})
+  private static mockContent(content?: Cards):void{
+    const cards= content || new Cards()
+    getColumn.mockReturnValue(cards)
   }
 
 }
