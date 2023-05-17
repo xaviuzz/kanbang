@@ -1,6 +1,7 @@
 import './controls.css'
-import Dump from "./Dump"
-import Ship from "./Ship"
+import Dump from './Dump'
+import Ship from './Ship'
+import React from 'react'
 
 
 const Controls:React.FC =()=>{

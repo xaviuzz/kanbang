@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Cards from '../../../../domain/cards'
-import { Movement } from '../../../../domain/types'
 import Card from './card/Card'
 import './column.css'
 import Header from './header/Header'
@@ -12,7 +11,7 @@ interface ColumnProps {
 
 const Column: React.FC<ColumnProps> = ({ name}) => {
   const {move,getColumn,add,rename,remove} = useKanban()
-  const [cards, setCards] = useState<Cards>(getColumn(name))
+  const [cards] = useState<Cards>(getColumn(name))
 
   return (
     <div role='column' className='column'>

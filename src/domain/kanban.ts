@@ -1,6 +1,6 @@
-import Cards from "./cards";
-import Columns from "./columns";
-import { CardDescription, ColumnDescription, Movement } from "./types";
+import Cards from './cards'
+import Columns from './columns'
+import { CardDescription, ColumnDescription, Movement } from './types'
 
 export default class Kanban extends Columns {
   private static readonly KEY = 'my-kanban'
@@ -30,9 +30,13 @@ export default class Kanban extends Columns {
   private static hidrate(serialized:string):Array<ColumnDescription>|undefined{
     try {
       const parsed = JSON.parse(serialized)
-      const hidrated: Array<ColumnDescription> = parsed.map((element: any) => {
-        return { ...element, content: new Cards(element.content as Array<CardDescription>) }
-      })
+      const hidrated: Array<ColumnDescription> = 
+        parsed.map((element: { content: CardDescription[] }) => {
+          return { 
+            ...element, 
+            content: new Cards(element.content as Array<CardDescription>) 
+          }
+        })
       return hidrated
     } catch (error) {
       return undefined
@@ -45,16 +49,16 @@ export default class Kanban extends Columns {
   }
 
   private persist() {
-    const serialized: string = this.serialize();
+    const serialized: string = this.serialize()
     localStorage.setItem(Kanban.KEY, serialized)
   }
 
 
   public serialize() {
     const flat: Array<object> = this.data().map((column: ColumnDescription) => {
-      return { ...column, content: column.content.data() };
-    });
-    const serialized: string = JSON.stringify(flat);
-    return serialized;
+      return { ...column, content: column.content.data() }
+    })
+    const serialized: string = JSON.stringify(flat)
+    return serialized
   }
 }

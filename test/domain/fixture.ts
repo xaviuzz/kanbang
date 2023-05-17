@@ -1,5 +1,5 @@
-import Cards from "../../src/domain/cards"
-import { CardDescription, ColumnDescription } from "../../src/domain/types"
+import Cards from '../../src/domain/cards'
+import { CardDescription, ColumnDescription } from '../../src/domain/types'
 import uuid from 'uuid-random'
 
 export const validUUID = new RegExp(/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i)

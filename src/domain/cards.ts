@@ -1,4 +1,4 @@
-import { CardDescription } from "./types";
+import { CardDescription } from './types'
 import uuid from 'uuid-random'
 
 export default class Cards {

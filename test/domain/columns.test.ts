@@ -1,7 +1,7 @@
-import { describe, it } from "vitest"
-import { aCard, defaultKanbang, emptyCards,anyId } from "./fixture"
-import { ColumnDescription } from "../../src/domain/types"
-import Cards from "../../src/domain/cards"
+import { describe, it } from 'vitest'
+import { aCard, defaultKanbang, emptyCards,anyId } from './fixture'
+import { ColumnDescription } from '../../src/domain/types'
+import Cards from '../../src/domain/cards'
 import Columns from '../../src/domain/columns'
 
 describe ('Columns',()=>{
@@ -33,8 +33,8 @@ describe ('Columns',()=>{
 
   it('can move cards forward',()=>{
     const cards= new Cards().add(aCard)
-    const origin:string = 'origin'
-    const destination:string = 'destination'
+    const origin = 'origin'
+    const destination = 'destination'
     const initial:Array<ColumnDescription>=[
       {id: anyId(), name: origin ,content:cards},
       {id: anyId(), name: destination,content:emptyCards}
@@ -43,14 +43,14 @@ describe ('Columns',()=>{
 
     const result = columns.move(origin,aCard.id)
     
-    const destinationColumn = result.getColumnByName(destination);
+    const destinationColumn = result.getColumnByName(destination)
     expect(destinationColumn.content.data()).toEqual([aCard])
   })
 
   it('can move cards backward',()=>{
     const cards= new Cards().add(aCard)
-    const origin:string = 'origin'
-    const destination:string = 'destination'
+    const origin = 'origin'
+    const destination = 'destination'
     const initial:Array<ColumnDescription>=[
       {id: anyId(), name: destination,content:emptyCards},
       {id: anyId(), name: origin ,content:cards}
@@ -59,13 +59,13 @@ describe ('Columns',()=>{
 
     const result = columns.move(origin,aCard.id,'backward')
     
-    const destinationColumn = result.getColumnByName(destination);
+    const destinationColumn = result.getColumnByName(destination)
     expect(destinationColumn.content.data()).toEqual([aCard])
   })
 
   it('can update changes in columns',()=>{
     const cards= new Cards().add(aCard)
-    const target:string = 'target'
+    const target = 'target'
     const initial:Array<ColumnDescription>=[
       {id: anyId(), name: target,content:new Cards()}
     ]

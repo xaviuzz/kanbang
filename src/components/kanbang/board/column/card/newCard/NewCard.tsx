@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './newCard.css'
 
 type newCardProps = {
@@ -8,7 +8,7 @@ type newCardProps = {
 const NewCard: React.FC<newCardProps> = ({ onSubmit }) => {
 
   const submitOnEnter = (key: string, value: string): void => {
-    if (key != "Enter") return
+    if (key != 'Enter') return
     onSubmit(value)
   }
 

@@ -1,6 +1,6 @@
-import uuid from 'uuid-random';
-import { CardDescription, ColumnDescription, Movement } from "./types";
-import Cards from "./cards";
+import uuid from 'uuid-random'
+import { CardDescription, ColumnDescription, Movement } from './types'
+import Cards from './cards'
 
 const DEFAULT: Array<ColumnDescription> = [
   { id: uuid(), name: 'to-do', content: new Cards() },
@@ -25,9 +25,9 @@ export default class Columns {
   }
 
   public move(from: string, cardId: string, destination: Movement = 'forward'): Columns {
-    const indexTo: number = this.calculateNewIndex(from, destination);
+    const indexTo: number = this.calculateNewIndex(from, destination)
 
-    this.doMove(from, indexTo, cardId);
+    this.doMove(from, indexTo, cardId)
 
     return new Columns(this.data())
   }
@@ -78,17 +78,17 @@ export default class Columns {
   private calculateNewIndex(from: string, destination: Movement) {
     const offsets: Record<Movement, number> = {
       'forward': 1, 'backward': -1
-    };
-    const indexTo: number = this.getColumnPosition(from) + offsets[destination];
-    return indexTo;
+    }
+    const indexTo: number = this.getColumnPosition(from) + offsets[destination]
+    return indexTo
   }
 
   private doMove(from: string, to: number, cardId: string) {
     if (!this.canMoveTo(to)) return
 
-    const theCard: CardDescription = this.retrieveCard(from, cardId);
+    const theCard: CardDescription = this.retrieveCard(from, cardId)
 
-    this.removeCardFromColumn(from, cardId);
-    this.addCardToColumn(to, theCard);
+    this.removeCardFromColumn(from, cardId)
+    this.addCardToColumn(to, theCard)
   }
 }

@@ -1,7 +1,7 @@
-import { describe, it, vi } from "vitest"
-import { ColumnDescription } from "../../src/domain/types"
-import { aCard, anyId, emptyCards } from "./fixture"
-import Cards from "../../src/domain/cards"
+import { describe, it, vi } from 'vitest'
+import { ColumnDescription } from '../../src/domain/types'
+import { aCard, anyId, emptyCards } from './fixture'
+import Cards from '../../src/domain/cards'
 import Kanban from '../../src/domain/kanban'
 
 describe('the kanban', () => {

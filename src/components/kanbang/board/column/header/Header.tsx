@@ -1,5 +1,6 @@
 import { FaPlus } from 'react-icons/fa'
 import './header.css'
+import React from 'react'
 
 interface headerProps {
   name: string,

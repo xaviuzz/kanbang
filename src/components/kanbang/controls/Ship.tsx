@@ -1,7 +1,8 @@
-import { useRef } from "react"
-import { FaFileUpload } from "react-icons/fa"
-import Kanban from "../../../domain/kanban"
-import { useKanban } from "../../../context/kanban"
+import { useRef } from 'react'
+import { FaFileUpload } from 'react-icons/fa'
+import Kanban from '../../../domain/kanban'
+import { useKanban } from '../../../context/kanban'
+import React from 'react'
 
 
 const Ship:React.FC =()=>{
@@ -15,9 +16,9 @@ const Ship:React.FC =()=>{
   }
 
   const askForFile=(event:any)=> {
-    var reader = new FileReader();
-    reader.onload = reLoad;
-    reader.readAsText(event.target.files[0]);
+    const reader = new FileReader()
+    reader.onload = reLoad
+    reader.readAsText(event.target.files[0])
   }
 
   const reLoad=(event:any)=>{
@@ -37,7 +38,7 @@ const Ship:React.FC =()=>{
         id="file"
         type="file"
         style={{display:'none'}}
-        />
+      />
     </> 
   )
 }

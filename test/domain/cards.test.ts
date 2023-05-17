@@ -1,6 +1,6 @@
-import { describe, it } from "vitest"
-import { CardDescription } from "../../src/domain/types"
-import { validUUID, aCard } from "./fixture"
+import { describe, it } from 'vitest'
+import { CardDescription } from '../../src/domain/types'
+import { validUUID, aCard } from './fixture'
 import Cards from '../../src/domain/cards'
 
 describe('Cards', () => {

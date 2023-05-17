@@ -1,27 +1,27 @@
-import { render, screen } from "@testing-library/react"
-import React from "react"
+import { render, screen } from '@testing-library/react'
+import React from 'react'
 import Kanbang from '../../src/components/kanbang/Kanbang'
 
-describe("default kanbang", () => {
-  it("has three columns", async () => {
+describe('default kanbang', () => {
+  it('has three columns', async () => {
     SUT.render()
   
     expect(SUT.numberOfColumns()).toEqual(3)
   })
 
-  it("first is called to-do", async () => {
+  it('first is called to-do', async () => {
     SUT.render()
     const name = SUT.getNameFromColumn(1)
     expect(name).toBe('to-do')
   })
 
-  it("second is called doing", async () => {
+  it('second is called doing', async () => {
     SUT.render()
     const name = SUT.getNameFromColumn(2)
     expect(name).toBe('doing')
   })
 
-  it("third is called done", async () => {
+  it('third is called done', async () => {
     SUT.render()
     const name = SUT.getNameFromColumn(3)
     expect(name).toBe('done')

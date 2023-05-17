@@ -1,20 +1,20 @@
-import { fireEvent, render, screen } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
-import React from "react"
+import { fireEvent, render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import React from 'react'
 import { act } from 'react-dom/test-utils'
 import { vi } from 'vitest'
-import Card from "../../src/components/kanbang/board/column/card/Card"
+import Card from '../../src/components/kanbang/board/column/card/Card'
 
-describe("Card", () => {
-  it("display its title", async () => {
+describe('Card', () => {
+  it('display its title', async () => {
     SUT.render()
 
     const result = await SUT.getTitle()
     expect(result).toEqual(SUT.title)
   })
 
-  it("prompts a title if no title", async () => {
-    const aTitle: string = 'A title'
+  it('prompts a title if no title', async () => {
+    const aTitle = 'A title'
     SUT.renderWithoutTitle()
 
     await SUT.typeOnPrompt(aTitle)
@@ -23,8 +23,8 @@ describe("Card", () => {
     expect(result).toEqual(aTitle)
   })
 
-  it("submits on losing focus", async () => {
-    const aTitle: string = 'A title'
+  it('submits on losing focus', async () => {
+    const aTitle = 'A title'
     SUT.renderWithoutTitle()
     const noEnter = false
 
@@ -35,7 +35,7 @@ describe("Card", () => {
     expect(result).toEqual(aTitle)
   })
 
-  it("signals to be moved forward", async () => {
+  it('signals to be moved forward', async () => {
     vi.restoreAllMocks()
     SUT.render()
 
@@ -44,7 +44,7 @@ describe("Card", () => {
     expect(SUT.onMove).toBeCalledWith('forward')
   })
 
-  it("signals to be moved backward", async () => {
+  it('signals to be moved backward', async () => {
     vi.restoreAllMocks()
     SUT.render()
 
@@ -53,7 +53,7 @@ describe("Card", () => {
     expect(SUT.onMove).toBeCalledWith( 'backward')
   })
 
-  it("signals to be removed", async () => {
+  it('signals to be removed', async () => {
     vi.restoreAllMocks()
     SUT.render()
 
@@ -62,8 +62,8 @@ describe("Card", () => {
     expect(SUT.onDelete).toBeCalled()
   })
 
-  it("signals changes", async () => {
-    const newTitle: string = 'new title'
+  it('signals changes', async () => {
+    const newTitle = 'new title'
     vi.restoreAllMocks()
     SUT.renderWithoutTitle()
 
@@ -96,9 +96,9 @@ class SUT {
   public static async typeOnPrompt(literal: string, submit = true) {
     await act(async () => {
       let characters: string = literal
-      const prompt = screen.queryByRole('textbox')
+      const prompt = screen.getByRole('textbox')
       if (submit) characters = `${literal}{enter}`
-      await userEvent.type(prompt!, characters)
+      await userEvent.type(prompt, characters)
     })
   }
 

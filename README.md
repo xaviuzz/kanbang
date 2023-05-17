@@ -25,6 +25,7 @@ A Kanban tool
 - WIP: `:building_construction:` 🏗️
 - UX: `:art:` 🎨
 - Fix: `:adhesive_bandage:` 🩹
+- Development scripts/tools: `:hammer:` 🔨
 
 ## Authors and acknowledgment
 @XaV1Uzz

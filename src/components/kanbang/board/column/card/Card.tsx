@@ -12,7 +12,7 @@ type cardProps = {
   onDelete: () => void
 }
 
-const Card: React.FC<cardProps> = ({ id, title, onMove, onChange, onDelete }) => {
+const Card: React.FC<cardProps> = ({ title, onMove, onChange, onDelete }) => {
   const [heading, setHeading] = useState<string>(title)
 
   const doRename = (value: string): void => {
