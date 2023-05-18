@@ -1,4 +1,5 @@
 # Kangbang
+![Test badge](https://github.com/xaviuzz/kanbang/actions/workflows/test.yml/badge.svg)
 
 ## Name
 Kangbang 
