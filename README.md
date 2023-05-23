@@ -27,6 +27,7 @@ A Kanban tool
 - UX: `:art:` 🎨
 - Fix: `:adhesive_bandage:` 🩹
 - Development scripts/tools: `:hammer:` 🔨
+- Accesibility `:wheelchair:` ♿️
 
 ## Authors and acknowledgment
 @XaV1Uzz

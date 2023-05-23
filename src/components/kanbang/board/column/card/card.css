@@ -9,18 +9,28 @@
   align-items: center;
 }
 
-
-.card .card-moving{
-  visibility: hidden;
+a.card{
+  text-decoration: none;
+  color: inherit;
 }
 
-.card:hover .card-moving{
-  visibility: visible;
+a.card:focus{
+  border: 2px;
 }
 
 .card .card-moving button{
-  margin: 0rem;
+ color: var(--surface);
+ margin: 0rem;
 }
+
+.card .card-moving button:focus{
+  color: inherit;
+ }
+
+.card:hover .card-moving button{
+  color: inherit;
+}
+
 
 .card h2{
   margin: 0rem 0.5rem;

@@ -42,7 +42,7 @@ const Card: React.FC<cardProps> = ({ title, onMove, onChange, onDelete }) => {
     )
   } else {
     return (
-      <div role='card' className='card'>
+      <a  className='card' aria-label={heading} href='#'>
         <div className='card-moving'>
           <button onClick={moveBackward} aria-label='backward'>
             <FaAngleLeft />
@@ -61,7 +61,7 @@ const Card: React.FC<cardProps> = ({ title, onMove, onChange, onDelete }) => {
             <FaCross />
           </button>
         </div>
-      </div>
+      </a>
     )
   }
 }

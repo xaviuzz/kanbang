@@ -19,8 +19,8 @@ const Dump:React.FC =()=>{
 
   return ( 
     
-    <button aria-label="export" onClick={dump} >
-      <FaSave/>
+    <button aria-label="export" onClick={dump} role='menuitem'>
+      <FaSave aria-label='an old computer floppy disc'/>
     </button>
       
   )

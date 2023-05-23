@@ -14,7 +14,7 @@ const Column: React.FC<ColumnProps> = ({ name}) => {
   const [cards] = useState<Cards>(getColumn(name))
 
   return (
-    <div role='column' className='column'>
+    <div role='region' className='column' aria-label={name}>
       <Header name={name} onClick={()=>add(name)}/>
       <span>
         {cards.data().map((card) => (

@@ -9,11 +9,11 @@ interface headerProps {
 
 const Header: React.FC<headerProps> = ({ name, onClick }) => {
   return (
-    <div className='column-header'>
+    <div className='column-header' role='banner'>
       <h1>{name}</h1>
-      <button onClick={onClick} aria-label='add card'>
-        <FaPlus />
-      </button>
+      <a onClick={onClick} aria-label='add card' role='menuitem' title='Add card'>
+        <FaPlus role='none'/>
+      </a>
     </div>
   )
 }

@@ -29,20 +29,20 @@ describe('default kanbang', () => {
 })
 
 class SUT {
+  public static ROLE = 'region'
 
   static render() {
     render(<Kanbang />)
   }
 
   public static getNameFromColumn(position: number) {
-    const ROLE = 'column'
-    const column = screen.getAllByRole(ROLE)[position - 1]
+    const column = screen.getAllByRole(this.ROLE)[position - 1]
     const name = column.getElementsByTagName('h1')[0].textContent
     return name
   }
 
   public static numberOfColumns():number{
-    const columns = screen.getAllByRole('column')
+    const columns = screen.getAllByRole(this.ROLE)
     return columns.length
   }
 }

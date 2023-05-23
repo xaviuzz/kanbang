@@ -11,3 +11,15 @@
   margin: 1rem;
 
 }
+
+.column-header a{
+  display: block;
+  color: var(--dark-accent);
+  margin: 1rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+  background-color:var(--surface);
+  border-radius: 2rem;
+  width: 2rem;
+  height: 2rem;
+}

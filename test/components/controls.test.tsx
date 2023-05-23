@@ -6,12 +6,12 @@ describe('Controls', () => {
 
   it('has a button to export data', async () => {
     SUT.render()
-    expect(screen.getByRole('button',{name:'export'})).toBeInTheDocument()
+    expect(screen.getByRole('menuitem',{name:'export'})).toBeInTheDocument()
   })
 
   it('has a button to import data', async () => {
     SUT.render()
-    expect(screen.getByRole('button',{name:'import'})).toBeInTheDocument()
+    expect(screen.getByRole('menuitem',{name:'import'})).toBeInTheDocument()
   })
 })
 

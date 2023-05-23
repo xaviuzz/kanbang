@@ -29,8 +29,8 @@ const Ship:React.FC =()=>{
 
   return (
     <>
-      <button aria-label="import" onClick={ship}>
-        <FaFileUpload/>
+      <button aria-label="import" onClick={ship} role='menuitem'>
+        <FaFileUpload aria-label='A document being uploaded'/>
       </button>
       <input
         ref={fileUpload}

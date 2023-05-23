@@ -1,1 +1,87 @@
-[{"id":"683b1bd9-6e99-4e0d-8801-a984386fb1f2","name":"to-do","content":[{"id":"8b336484-6d6f-486a-b80f-ad6e16462d41","title":"Add card with keyboard"},{"id":"614db193-fc81-47cc-9d67-cb73a8117618","title":"select card  by hover"},{"id":"5eee0091-e06c-45c4-96a5-8a17fa069677","title":"move card with keyboard"},{"id":"fa157036-a62a-467f-bf8e-bd07ae2f690e","title":"edit card"},{"id":"b5b33758-d5ca-44c9-980a-e60f9f35b21e","title":"Move up"},{"id":"3f62dcc6-d030-4e19-8bd3-3f85240920de","title":"move down"},{"id":"50ce42aa-12b0-4554-8b88-42cdb7acaf94","title":"Deploy in github pages"},{"id":"55da2f69-f2f1-4838-bdcf-6a8240511571","title":"separate domain and app logic (serialize and restore)"},{"id":"8f120381-d809-49f3-8d2e-3aef27a2682a","title":"Choose name when saving"},{"id":"8eef1c2d-a587-4416-b61e-555e851898d7","title":"segreggate context mock as fixture"},{"id":"dfcc2ed7-b14a-4e3f-ad1b-f561045f2ada","title":"Esc exits adding cards"},{"id":"26fca3b0-31fd-423f-b749-f4b6b9a357ce","title":"Check accesibility"},{"id":"361d9553-4f78-4309-af4e-8f3029493d08","title":"Overflow column with scroll"}]},{"id":"180ea1bb-6efd-47ab-a2ce-fc0a41855615","name":"doing","content":[]},{"id":"19f7b147-c882-4708-b328-5da3c228b91d","name":"done","content":[{"id":"a655dbef-7454-4903-88f4-4f7462beb251","title":"{Bug} board must grow with column"},{"id":"2e0720fa-ef18-422d-ac29-9d9216da11cf","title":"Arrange card actions"},{"id":"30192786-0d79-4be1-9d20-2f7370cb7372","title":"Delete Card"},{"id":"08954206-ae86-4732-8fe8-90548a74dd07","title":"UseContext"}]}]
+[
+  {
+    "id": "683b1bd9-6e99-4e0d-8801-a984386fb1f2",
+    "name": "to-do",
+    "content": [
+      {
+        "id": "8b336484-6d6f-486a-b80f-ad6e16462d41",
+        "title": "Add card with keyboard"
+      },
+      {
+        "id": "614db193-fc81-47cc-9d67-cb73a8117618",
+        "title": "select card  by hover"
+      },
+      {
+        "id": "5eee0091-e06c-45c4-96a5-8a17fa069677",
+        "title": "move card with keyboard"
+      },
+      {
+        "id": "fa157036-a62a-467f-bf8e-bd07ae2f690e",
+        "title": "edit card"
+      },
+      {
+        "id": "b5b33758-d5ca-44c9-980a-e60f9f35b21e",
+        "title": "Move up"
+      },
+      {
+        "id": "3f62dcc6-d030-4e19-8bd3-3f85240920de",
+        "title": "move down"
+      },
+      {
+        "id": "50ce42aa-12b0-4554-8b88-42cdb7acaf94",
+        "title": "Deploy in github pages"
+      },
+      {
+        "id": "55da2f69-f2f1-4838-bdcf-6a8240511571",
+        "title": "separate domain and app logic (serialize and restore)"
+      },
+      {
+        "id": "8f120381-d809-49f3-8d2e-3aef27a2682a",
+        "title": "Choose name when saving"
+      },
+      {
+        "id": "8eef1c2d-a587-4416-b61e-555e851898d7",
+        "title": "segreggate context mock as fixture"
+      },
+      {
+        "id": "dfcc2ed7-b14a-4e3f-ad1b-f561045f2ada",
+        "title": "Esc exits adding cards"
+      },
+      {
+        "id": "26fca3b0-31fd-423f-b749-f4b6b9a357ce",
+        "title": "Check accesibility"
+      },
+      {
+        "id": "361d9553-4f78-4309-af4e-8f3029493d08",
+        "title": "Overflow column with scroll"
+      }
+    ]
+  },
+  {
+    "id": "180ea1bb-6efd-47ab-a2ce-fc0a41855615",
+    "name": "doing",
+    "content": []
+  },
+  {
+    "id": "19f7b147-c882-4708-b328-5da3c228b91d",
+    "name": "done",
+    "content": [
+      {
+        "id": "a655dbef-7454-4903-88f4-4f7462beb251",
+        "title": "{Bug} board must grow with column"
+      },
+      {
+        "id": "2e0720fa-ef18-422d-ac29-9d9216da11cf",
+        "title": "Arrange card actions"
+      },
+      {
+        "id": "30192786-0d79-4be1-9d20-2f7370cb7372",
+        "title": "Delete Card"
+      },
+      {
+        "id": "08954206-ae86-4732-8fe8-90548a74dd07",
+        "title": "UseContext"
+      }
+    ]
+  }
+]
