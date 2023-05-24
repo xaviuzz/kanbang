@@ -42,6 +42,25 @@ export default class Columns {
     return new Columns(this.data())
   }
 
+  public add(columnName:string):Columns{
+    const theColumn=this.getColumnByName(columnName).content
+    const newContent: Cards = theColumn.addNew()
+    return this.update(columnName,newContent)
+  }
+
+  public rename(columnName:string, id:string, title:string){
+    const theColumn=this.getColumnByName(columnName).content
+    const newContent: Cards = theColumn.rename(id, title)
+    return this.update(columnName,newContent)      
+  }
+
+  public remove(columnName:string,id:string){
+    const theColumn=this.getColumnByName(columnName).content
+    const newContent: Cards = theColumn.remove(id)
+    return this.update(columnName,newContent)
+  }
+
+
   public getColumnByName(name: string): ColumnDescription {
     const found = this.collection.find(column => column.name == name)
     if (!found) throw Error('No column found')

@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { FaFileUpload } from 'react-icons/fa'
-import Kanban from '../../../domain/kanban'
+import Kanban from '../../../app/kanban'
 import { useKanban } from '../../../context/kanban'
 import React from 'react'
 

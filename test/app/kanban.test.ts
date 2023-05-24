@@ -1,8 +1,8 @@
 import { describe, it, vi } from 'vitest'
 import { ColumnDescription } from '../../src/domain/types'
-import { aCard, anyId, emptyCards } from './fixture'
+import { aCard, anyId, emptyCards } from '../domain/fixture'
 import Cards from '../../src/domain/cards'
-import Kanban from '../../src/domain/kanban'
+import Kanban from '../../src/app/kanban'
 
 describe('the kanban', () => {
   it('persists', () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Kanban from '../domain/kanban'
+import Kanban from '../app/kanban'
 import Cards from '../domain/cards'
 import { Movement } from '../domain/types'
 
@@ -48,21 +48,15 @@ const WithKanban:React.FC<withKanbanProps> =({children})=>{
   }
 
   const add=(columnName:string)=>{
-    const theColumn=getColumn(columnName)
-    const newContent: Cards = theColumn.addNew()
-    update(columnName,newContent)
+    setKanban(kanban.add(columnName))
   }
 
   const  rename=(columnName:string, id:string, title:string)=> {
-    const theColumn=getColumn(columnName)
-    const newContent: Cards = theColumn.rename(id, title)
-    update(columnName,newContent)      
+    setKanban(kanban.rename(columnName,id,title))     
   }
 
   const remove=(columnName:string,id:string)=>{
-    const theColumn=getColumn(columnName)
-    const newContent: Cards = theColumn.remove(id)
-    update(columnName,newContent)
+    setKanban(kanban.remove(columnName,id))
   }
 
   const value:KanbanContextAPI={

@@ -3,7 +3,7 @@ import React from 'react'
 import { vi } from 'vitest'
 import Column from '../../src/components/kanbang/board/column/Column'
 import Cards from '../../src/domain/cards'
-import Kanban from '../../src/domain/kanban'
+import Kanban from '../../src/app/kanban'
 import { WithKanban } from '../../src/context/kanban'
 
 

@@ -1,6 +1,6 @@
-import Cards from './cards'
-import Columns from './columns'
-import { CardDescription, ColumnDescription, Movement } from './types'
+import Cards from '../domain/cards'
+import Columns from '../domain/columns'
+import { CardDescription, ColumnDescription, Movement } from '../domain/types'
 
 export default class Kanban extends Columns {
   private static readonly KEY = 'my-kanban'
@@ -18,6 +18,24 @@ export default class Kanban extends Columns {
 
   public update(from: string, content: Cards): Kanban {
     const result = super.update(from, content)
+    this.persist()
+    return new Kanban(result.data())
+  }
+
+  public add(columnName: string): Kanban {
+    const result = super.add(columnName)
+    this.persist()
+    return new Kanban(result.data())
+  }
+
+  public rename(columnName:string, id:string, title:string){
+    const result = super.rename(columnName,id,title)
+    this.persist()
+    return new Kanban(result.data())
+  }
+
+  public remove(columnName:string,id:string){
+    const result = super.remove(columnName,id)
     this.persist()
     return new Kanban(result.data())
   }
