@@ -10,5 +10,15 @@ services:
     ports: 
       - 4000:4000
     container_name: kangbang
+  
+  kangbang-e2e:
+    build: ./e2e
+    volumes:
+      - ./e2e:/e2e
+      - /e2e/node_modules/
+    ports:
+      - 9223:9223
+    container_name: kangbang-e2e
+    network_mode: host
 
  

@@ -1,0 +1,14 @@
+{
+  "name": "kangbang-e2e",
+  "version": "0.0.1",
+  "description": "Testing Kanbang",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "~1.30.0"
+  }
+}
