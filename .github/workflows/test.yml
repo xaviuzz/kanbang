@@ -19,9 +19,9 @@ jobs:
 
     - name: Run tests
       run: docker-compose -f "docker-compose.yml" exec -T kanbang-app npm run test
-      
+
     - name: Run e2e
-      run: docker-compose -f "docker-compose.yml" exec -T kangbang-e2e npm run test
+      run: docker-compose -f "docker-compose.yml" run -T kangbang-e2e npm run test
 
     - name: Stop containers
       if: always()
