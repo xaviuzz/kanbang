@@ -16,7 +16,7 @@ export default class Kanbang {
   }
 
   private async open(){
-    await this.page.goto('http://localhost:4000')
+    await this.page.goto('http://kanbang-app:4000')
   }
 
   public selectColumn(name:string){

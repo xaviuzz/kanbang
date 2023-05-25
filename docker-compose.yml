@@ -19,6 +19,5 @@ services:
     ports:
       - 9223:9223
     container_name: kangbang-e2e
-    network_mode: host
 
  
