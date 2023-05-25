@@ -16,7 +16,8 @@ A Kanban tool
   make stop
 ### run all test
   make test
-
+### run end to end test
+  make e2e
 
 ## Gitmoji commit legend
 - Bug: `:bug:` 🐛
@@ -28,6 +29,7 @@ A Kanban tool
 - Fix: `:adhesive_bandage:` 🩹
 - Development scripts/tools: `:hammer:` 🔨
 - Accesibility `:wheelchair:` ♿️
+- E2E: `:technologist:` 🧑‍💻
 
 ## Authors and acknowledgment
 @XaV1Uzz

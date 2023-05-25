@@ -5,8 +5,11 @@ import './styles/reset.css'
 import './styles/palette.css'
 import './styles/index.css'
 
-ReactDOM.createRoot(document.getElementById('app')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-)
+const rootElement=document.getElementById('app')
+if(rootElement){
+  ReactDOM.createRoot(rootElement).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  )
+}

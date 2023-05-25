@@ -31,10 +31,6 @@ interface withKanbanProps {
 const WithKanban:React.FC<withKanbanProps> =({children})=>{
   const [kanban,setKanban]=useState<Kanban>(new Kanban()) 
 
-  const update=(target:string, content:Cards):void=>{
-    setKanban(kanban.update(target,content))
-  }
-
   const move = (from:string, id:string, direction:Movement):void=>{
     setKanban(kanban.move(from,id,direction))
   }

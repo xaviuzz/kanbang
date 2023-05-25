@@ -21,6 +21,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/isomorphic-fetch": "^0.0.36",
+    "@types/node": "^20.2.3",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.59.6",

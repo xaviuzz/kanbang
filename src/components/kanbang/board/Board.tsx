@@ -7,7 +7,7 @@ import Column from './column/Column'
 const Board: React.FC = () => {
   const {kanban} = useKanban()
 
-  return <span className='board' role='main' aria-label='Kanban'>
+  return <span className='board lattice' role='main' aria-label='Kanban'>
     {kanban.data().map((column) => (
       <Column
         key={column.id}
