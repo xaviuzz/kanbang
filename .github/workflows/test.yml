@@ -9,10 +9,7 @@ jobs:
   docker:
     timeout-minutes: 10
     runs-on: ubuntu-latest
-    container:
-      image: siimeon/dockercomposegitlabci
-      options: --user root
-
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v1
@@ -24,7 +21,7 @@ jobs:
       run: docker-compose -f "docker-compose.yml" exec -T kanbang-app npm run test
 
     - name: Run e2e
-      run: docker-compose -f "docker-compose.yml" run -T kangbang-e2e npm run test
+      run: docker-compose -f "docker-compose.yml" run -u root -T kangbang-e2e npm run test
 
     - name: Stop containers
       if: always()
