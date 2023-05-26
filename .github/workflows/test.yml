@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 10
     runs-on: ubuntu-latest
     container:
-      image: ubuntu
+      image: siimeon/dockercomposegitlabci
       options: --user root
 
     steps:
