@@ -37,7 +37,7 @@ class SUT {
 
   public static getNameFromColumn(position: number) {
     const column = screen.getAllByRole(this.ROLE)[position - 1]
-    const name = column.getElementsByTagName('h1')[0].textContent
+    const name = column.getElementsByTagName('div')[0].textContent
     return name
   }
 

@@ -9,7 +9,10 @@ const Kanbang: React.FC = () => {
   return (
     <div className="kanbang">
       <WithKanban>
-        <Controls/>
+        <header>
+          <h1>Kanbang</h1>
+          <Controls/>
+        </header>
         <Board />
       </WithKanban>
     </div>

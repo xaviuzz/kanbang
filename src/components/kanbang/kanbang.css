@@ -2,3 +2,12 @@
   display:flex;
   flex-direction: column;
 }
+
+.kanbang header{
+  width: 95vw;
+  margin: auto;
+  margin-top: 1em;
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}

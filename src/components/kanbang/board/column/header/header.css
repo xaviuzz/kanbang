@@ -3,7 +3,7 @@
   flex-direction: row;
 }
 
-.column-header>h1{
+.column-title{
   width: 100%;
   text-align: center;
   text-transform: uppercase;

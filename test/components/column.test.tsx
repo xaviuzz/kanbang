@@ -60,7 +60,7 @@ class SUT {
   }
 
   public static title() {
-    return screen.getByRole('heading')
+    return screen.getByRole('menubar')
   }
 
   public static clickAdd() {
