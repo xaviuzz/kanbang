@@ -8,6 +8,7 @@ type newCardProps = {
 const NewCard: React.FC<newCardProps> = ({ onSubmit }) => {
 
   const submitOnEnter = (key: string, value: string): void => {
+    if (key == 'Escape') onSubmit('')
     if (key != 'Enter') return
     onSubmit(value)
   }

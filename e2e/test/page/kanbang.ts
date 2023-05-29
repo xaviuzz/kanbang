@@ -24,9 +24,18 @@ export default class Kanbang {
   }
 
   public async addCard(title:string){
+    await this.typeInNewcard(title)
+    await this.selectedColumn.press('Enter') 
+  }
+
+  private async typeInNewcard(title:string){
     await this.selectedColumn.getByRole('menuitem',{name:'add card'}).click()
     await this.selectedColumn.getByRole('textbox').type(title)
-    await this.selectedColumn.press('Enter') 
+  }
+
+  public async addAndEsc(title:string){
+    await this.typeInNewcard(title)
+    await this.selectedColumn.press('Escape') 
   }
 
   public getCardByName(name:string):Locator{
