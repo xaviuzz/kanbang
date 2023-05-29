@@ -17,6 +17,7 @@ const NewCard: React.FC<newCardProps> = ({ onSubmit }) => {
   return (
     <div role='card' className='card new_card'>
       <input
+        aria-label='new card'
         type='text'
         placeholder='Lorem ipsum'
         autoFocus={true}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Kanban from '../app/kanban'
 import Cards from '../domain/cards'
 import { Movement } from '../domain/types'
+import {useHotkeys} from 'react-hotkeys-hook'
 
 interface KanbanContextAPI{
   kanban: Kanban
@@ -30,6 +31,8 @@ interface withKanbanProps {
 
 const WithKanban:React.FC<withKanbanProps> =({children})=>{
   const [kanban,setKanban]=useState<Kanban>(new Kanban()) 
+  useHotkeys('n', () => add('to-do'),{preventDefault: true })
+
 
   const move = (from:string, id:string, direction:Movement):void=>{
     setKanban(kanban.move(from,id,direction))
