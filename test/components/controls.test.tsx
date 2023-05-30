@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
-import Controls from '../../src/components/kanbang/controls/Controls'
+import Controls from '../../src/components/kanbang/banner/controls/Controls'
 
 describe('Controls', () => {
 

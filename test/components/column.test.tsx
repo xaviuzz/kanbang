@@ -5,7 +5,9 @@ import Column from '../../src/components/kanbang/board/column/Column'
 import Cards from '../../src/domain/cards'
 import Kanban from '../../src/app/kanban'
 import { WithKanban } from '../../src/context/kanban'
-
+vi.mock('react-router-dom', () => ({
+  useLocation:() =>{return {pathname: 'tal'}} 
+}))
 
 describe('Column', () => {
   

@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { FaFileUpload } from 'react-icons/fa'
-import Kanban from '../../../app/kanban'
-import { useKanban } from '../../../context/kanban'
+import Kanban from '../../../../app/kanban'
+import { useKanban } from '../../../../context/kanban'
 import React from 'react'
 
 
@@ -15,14 +15,17 @@ const Ship:React.FC =()=>{
     input.click()
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const askForFile=(event:any)=> {
     const reader = new FileReader()
     reader.onload = reLoad
     reader.readAsText(event.target.files[0])
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const reLoad=(event:any)=>{
     const loaded:string = event.target.result
+    console.log(loaded)
     const recovered:Kanban = Kanban.recoverFrom(loaded)
     load(recovered)
   }

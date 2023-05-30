@@ -5,11 +5,13 @@ import Cards from '../../src/domain/cards'
 import Kanban from '../../src/app/kanban'
 
 describe('the kanban', () => {
+  
   it('persists', () => {
     vi.spyOn(localStorage, 'setItem')
-    new Kanban([])
+    const name = 'my-kanban'
+    new Kanban(name,[])
     expect(localStorage.setItem)
-      .toHaveBeenCalledWith('my-kanban', '[]')
+      .toHaveBeenCalledWith(name, '[]')
   })
 
   it('restores its state when persisted', () => {
@@ -32,7 +34,7 @@ describe('the kanban', () => {
       { id: anyId(), name: 'doing', content: emptyCards },
       { id: anyId(), name: 'done', content: emptyCards }
     ]
-    const aKanban: Kanban = new Kanban(kanbang)
+    const aKanban: Kanban = new Kanban('a name',kanbang)
     spy.mockReset()
     aKanban.move('to-do', aCard.id)
 
@@ -47,7 +49,7 @@ describe('the kanban', () => {
       { id: anyId(), name: 'doing', content: emptyCards },
       { id: anyId(), name: 'done', content: emptyCards }
     ]
-    const aKanban: Kanban = new Kanban(kanbang)
+    const aKanban: Kanban = new Kanban('a name',kanbang)
     spy.mockReset()
     aKanban.update('to-do', update)
 

@@ -3,56 +3,58 @@ import Columns from '../domain/columns'
 import { CardDescription, ColumnDescription, Movement } from '../domain/types'
 
 export default class Kanban extends Columns {
-  private static readonly KEY = 'my-kanban'
-  constructor(data?: Array<ColumnDescription>) {
-    const theData = data || Kanban.recover()
+  private name: string
+
+  constructor(name = 'kanbang', data?: Array<ColumnDescription>) {
+    const theData = data || Kanban.recover(name)
     super(theData)
+    this.name = name
     this.persist()
   }
 
   public move(from: string, cardId: string, destination: Movement = 'forward'): Kanban {
     const result = super.move(from, cardId, destination)
     this.persist()
-    return new Kanban(result.data())
+    return new Kanban(this.name, result.data())
   }
 
   public update(from: string, content: Cards): Kanban {
     const result = super.update(from, content)
     this.persist()
-    return new Kanban(result.data())
+    return new Kanban(this.name, result.data())
   }
 
   public add(columnName: string): Kanban {
     const result = super.add(columnName)
     this.persist()
-    return new Kanban(result.data())
+    return new Kanban(this.name, result.data())
   }
 
-  public rename(columnName:string, id:string, title:string){
-    const result = super.rename(columnName,id,title)
+  public rename(columnName: string, id: string, title: string) {
+    const result = super.rename(columnName, id, title)
     this.persist()
-    return new Kanban(result.data())
+    return new Kanban(this.name, result.data())
   }
 
-  public remove(columnName:string,id:string){
-    const result = super.remove(columnName,id)
+  public remove(columnName: string, id: string) {
+    const result = super.remove(columnName, id)
     this.persist()
-    return new Kanban(result.data())
+    return new Kanban(this.name, result.data())
   }
 
-  private static recover(): Array<ColumnDescription> | undefined {
-    const persisted: string = localStorage.getItem(Kanban.KEY) || ''
+  private static recover(name: string): Array<ColumnDescription> | undefined {
+    const persisted: string = localStorage.getItem(name) || ''
     return this.hidrate(persisted)
   }
 
-  private static hidrate(serialized:string):Array<ColumnDescription>|undefined{
+  private static hidrate(serialized: string): Array<ColumnDescription> | undefined {
     try {
       const parsed = JSON.parse(serialized)
-      const hidrated: Array<ColumnDescription> = 
+      const hidrated: Array<ColumnDescription> =
         parsed.map((element: { content: CardDescription[] }) => {
-          return { 
-            ...element, 
-            content: new Cards(element.content as Array<CardDescription>) 
+          return {
+            ...element,
+            content: new Cards(element.content as Array<CardDescription>)
           }
         })
       return hidrated
@@ -61,14 +63,14 @@ export default class Kanban extends Columns {
     }
   }
 
-  public static recoverFrom(serialized:string):Kanban{
-    const hidrated= this.hidrate(serialized)
-    return new Kanban(hidrated)
+  public static recoverFrom(serialized: string): Kanban {
+    const hidrated = this.hidrate(serialized)
+    return new Kanban(this.name, hidrated)
   }
 
   private persist() {
     const serialized: string = this.serialize()
-    localStorage.setItem(Kanban.KEY, serialized)
+    localStorage.setItem(this.name, serialized)
   }
 
 
@@ -78,5 +80,9 @@ export default class Kanban extends Columns {
     })
     const serialized: string = JSON.stringify(flat)
     return serialized
+  }
+
+  public title(): string {
+    return this.name
   }
 }

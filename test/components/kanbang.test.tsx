@@ -1,6 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import React from 'react'
 import Kanbang from '../../src/components/kanbang/Kanbang'
+import { vi } from 'vitest'
+
+vi.mock('react-router-dom', () => ({
+  useLocation:() =>{return {pathname: 'tal'}} 
+}))
+
 
 describe('default kanbang', () => {
   it('has three columns', async () => {

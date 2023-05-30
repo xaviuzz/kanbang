@@ -5,9 +5,9 @@ export default class Kanbang {
   private page:Page
   private selectedColumn:Locator
 
-  public static async go(page:Page){
+  public static async go(page:Page, board = ''){
     const thePage = new Kanbang(page)
-    await thePage.open()
+    await thePage.open(board)
     return thePage
   }
 
@@ -15,12 +15,18 @@ export default class Kanbang {
     this.page = page
   }
 
-  private async open(){
-    await this.page.goto('http://kanbang-app:4000')
+  private async open(board:string){
+    let url = 'http://kanbang-app:4000'
+    if (board) url=url+'/'+board
+    await this.page.goto(url)
   }
 
   public selectColumn(name:string){
     this.selectedColumn = this.page.getByRole('region',{name: name})
+  }
+
+  public title(){
+    return this.page.getByRole('banner').getByRole('heading')
   }
 
   public async addCard(title:string){
