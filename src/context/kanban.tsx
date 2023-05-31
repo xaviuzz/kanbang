@@ -13,7 +13,9 @@ interface KanbanContextAPI {
   add: (columnName: string) => void
   rename: (columnName: string, id: string, title: string) => void
   remove: (columnName: string, id: string) => void
-  name: string
+  name: string,
+  selectedColumn: string,
+  setSelectedColumn: (columnName: string) => void
 }
 
 const KanbanContext = React.createContext<KanbanContextAPI>({
@@ -24,7 +26,9 @@ const KanbanContext = React.createContext<KanbanContextAPI>({
   add: () => { },
   rename: () => { },
   remove: () => { },
-  name: ''
+  name: '',
+  selectedColumn: '',
+  setSelectedColumn: () => { }
 })
 
 interface withKanbanProps {
@@ -36,7 +40,8 @@ const WithKanban: React.FC<withKanbanProps> = ({ children }) => {
   if (fromUrl == '') fromUrl = 'kanbang'
 
   const [kanban, setKanban] = useState<Kanban>(new Kanban(fromUrl))
-  useHotkeys('n', () => add('to-do'), { preventDefault: true })
+  const [selectedColumn, setSelectedColumn] = useState<string>('')
+  useHotkeys('n', () => add(selectedColumn), { preventDefault: true })
 
 
   const move = (from: string, id: string, direction: Movement): void => {
@@ -44,7 +49,7 @@ const WithKanban: React.FC<withKanbanProps> = ({ children }) => {
   }
 
   const load = (newKanban: Kanban): void => {
-    const loaded = new Kanban(name,newKanban.data())
+    const loaded = new Kanban(name, newKanban.data())
     setKanban(loaded)
   }
 
@@ -68,13 +73,11 @@ const WithKanban: React.FC<withKanbanProps> = ({ children }) => {
 
   const value: KanbanContextAPI = {
     kanban,
-    move,
     load,
     getColumn,
-    add,
-    rename,
-    remove,
-    name
+    add, move, rename, remove,
+    name,
+    selectedColumn, setSelectedColumn
   }
   return <KanbanContext.Provider value={value}>{children}</KanbanContext.Provider>
 }

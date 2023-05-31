@@ -5,9 +5,10 @@ import Kanbang from './page/kanbang'
 test.describe('in a Kanbang', () => {
 
   test('"n" triggers add card on todo', async ({ page }) => {    
-    const kanbang = await Kanbang.go(page)
-    kanbang.selectColumn('to-do')
+    await Kanbang.go(page)
+    const column = page.getByRole('region',{name: 'doing'})
+    await column.hover()
     await page.getByRole('main').press('n')
-    expect(page.getByRole('textbox',{name: 'new card'})).toBeVisible()
+    expect(column.getByRole('textbox',{name: 'new card'})).toBeVisible()
   })
 })

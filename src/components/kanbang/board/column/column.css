@@ -10,4 +10,11 @@
   margin: 5px;
   flex-direction: column;
   padding-bottom: 2rem;
+  border-style: solid;
+  border-width: 1px;
+  border-color: var(--background);
+}
+
+.selected{
+  border-color: var(--dark-accent);
 }
