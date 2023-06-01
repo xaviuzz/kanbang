@@ -105,6 +105,7 @@ class SUT {
           add: SUT.add,
           remove: () => { },
           load: () => { },
+          setSelectedCard: ()=>{},
           getColumn: SUT.getColumn
         }
       }

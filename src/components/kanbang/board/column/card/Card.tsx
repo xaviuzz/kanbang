@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Movement } from '../../../../../domain/types'
-import './card.css'
 import { FaAngleLeft, FaAngleRight, FaCross } from 'react-icons/fa'
 import NewCard from './newCard/NewCard'
+import './card.css'
+import { useKanban } from '../../../../../context/kanban'
 
 type cardProps = {
   id: string,
@@ -14,6 +15,15 @@ type cardProps = {
 
 const Card: React.FC<cardProps> = ({ title, onMove, onChange, onDelete }) => {
   const [heading, setHeading] = useState<string>(title)
+  const {selectedCard, setSelectedCard}=useKanban()
+  const baseClass = 'card'
+  const [classes, setClasses] = useState<string>(baseClass)
+
+  useEffect(() => {
+    let newClass: string = baseClass
+    if(selectedCard==heading)newClass+=' selected'
+    setClasses(newClass)
+  }, [selectedCard])
 
   const doRename = (value: string): void => {
     if (value == '') {
@@ -42,7 +52,12 @@ const Card: React.FC<cardProps> = ({ title, onMove, onChange, onDelete }) => {
     )
   } else {
     return (
-      <a  className='card' aria-label={heading} href='#'>
+      <a  
+        className={classes}
+        aria-label={heading} 
+        onClick={()=>setSelectedCard(heading)}
+        href='#'
+      >
         <div className='card-moving'>
           <button onClick={moveBackward} aria-label='backward'>
             <FaAngleLeft />

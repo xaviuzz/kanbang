@@ -34,4 +34,17 @@ test.describe('in a Kanbang', () => {
     expect(kanbang.getCardByName(title)).toHaveText(title)
   })
 
+  test('you can select a card with a click', async ({ page }) => {    
+    const title='A new card'
+    const kanbang = await Kanbang.go(page)
+    kanbang.selectColumn('to-do')
+    await kanbang.addCard(title)
+    
+    await kanbang
+      .getCardByName(title)
+      .click()
+    
+    expect(kanbang.getCardByName(title)).toHaveClass(/selected/)
+  })
+
 })
