@@ -4,34 +4,33 @@ import Kanbang from './page/kanbang'
 
 test.describe('in a Kanbang', () => {
 
-  test('you can add a card', async ({ page }) => {    
-    const title='A new card'
+  test('you can add a card', async ({ page }) => {
+    const title = 'A new card'
+    const columnName = 'to-do'
     const kanbang = await Kanbang.go(page)
-    kanbang.selectColumn('to-do')
-    
-    await kanbang.addCard(title)
 
-    expect(kanbang.getCardByName(title)).toHaveText(title)
+    await kanbang.addCardToColumn(title, columnName)
+
+    expect(kanbang.getCardInColumn(title, columnName)).toHaveText(title)
   })
 
-  test('you cant add an empty title card', async ({ page }) => {    
-    const title=''
+  test('you cant add an empty title card', async ({ page }) => {
+    const title = ''
+    const columnName = 'to-do'
     const kanbang = await Kanbang.go(page)
-    kanbang.selectColumn('to-do')
-    
-    await kanbang.addCard(title)
 
-    expect(kanbang.getCardByName(title)).toBeHidden()
+    await kanbang.addCardToColumn(title, columnName)
+
+    expect(kanbang.getCardInColumn(title, columnName)).toBeHidden()
   })
 
-  test('you cant stop editing with esc', async ({ page }) => {    
-    const title='A new card'
+  test('you cant stop editing with esc', async ({ page }) => {
+    const title = 'A new card'
+    const columnName = 'to-do'
     const kanbang = await Kanbang.go(page)
-    kanbang.selectColumn('to-do')
-    
-    await kanbang.addAndEsc(title)
 
+    await kanbang.addAndEsc(title, columnName)
 
-    expect(kanbang.getCardByName(title)).toBeHidden()
+    expect(kanbang.getCardInColumn(title, columnName)).toBeHidden()
   })
 })

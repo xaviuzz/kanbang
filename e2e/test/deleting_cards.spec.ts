@@ -3,17 +3,15 @@ import Kanbang from './page/kanbang'
 
 test.describe('in a Kanbang', () => {
 
-  test('you can delete a card', async ({ page }) => {    
-    const title='A new card'
+  test('you can delete a card', async ({ page }) => {
+    const column = 'to-do'
+    const title = 'A new card'
     const kanbang = await Kanbang.go(page)
-    kanbang.selectColumn('to-do')
-    await kanbang.addCard(title)
-    const card = kanbang.getCardByName(title)
-    await card
-      .getByRole('button',{name: 'delete'})
-      .click()
+    await kanbang.addCardToColumn(title, column)
     
-    expect(kanbang.getCardByName(title)).toBeHidden()
+    await kanbang.deleteCard(title)
+    
+    expect(kanbang.getCardInColumn(title, column)).toBeHidden()
   })
 
 })
