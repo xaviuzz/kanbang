@@ -8,7 +8,7 @@ const Board: React.FC = () => {
   const {kanban} = useKanban()
 
   return <span className='board lattice' role='main' aria-label='Kanban'>
-    {kanban.data().map((column) => (
+    {kanban.getColumnsDescription().map((column) => (
       <Column
         key={column.id}
         name={column.name}

@@ -25,9 +25,8 @@ const Ship:React.FC =()=>{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const reLoad=(event:any)=>{
     const loaded:string = event.target.result
-    console.log(loaded)
-    const recovered:Kanban = Kanban.recoverFrom(loaded)
-    load(recovered)
+    //const recovered:Kanban = Kanban.recoverFrom(loaded)
+    //load(recovered)
   }
 
   return (

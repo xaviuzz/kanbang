@@ -2,9 +2,11 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { vi } from 'vitest'
 import Column from '../../src/components/kanbang/board/column/Column'
-import Cards from '../../src/domain/cards'
 import Kanban from '../../src/app/kanban'
 import { WithKanban } from '../../src/context/kanban'
+import { CardDescription } from '../../src/domain/types'
+import { anyId } from '../app/fixture'
+import DomainColumn from '../../src/domain/column'
 vi.mock('react-router-dom', () => ({
   useLocation:() =>{return {pathname: 'tal'}} 
 }))
@@ -58,7 +60,7 @@ class SUT {
   }
 
   public static renderFilled() {
-    this.doRender(new Cards([{ id: SUT.id, title: 'a Title' }]))
+    this.doRender([{ id: SUT.id, title: 'a Title' }])
   }
 
   public static title() {
@@ -80,7 +82,7 @@ class SUT {
     fireEvent.click(moveCTA)
   }
 
-  private static doRender(content?: Cards) {
+  private static doRender(content?: Array<CardDescription>) {
     this.mockContent(content)
     render(
       <WithKanban>
@@ -89,8 +91,8 @@ class SUT {
     )
   }
 
-  private static mockContent(content?: Cards): void {
-    const cards = content || new Cards()
+  private static mockContent(content: Array<CardDescription>=[]): void {
+    const cards:DomainColumn = new DomainColumn({id:anyId(),name:'',content})
     SUT.getColumn.mockReturnValue(cards)
   }
 

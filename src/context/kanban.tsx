@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
 import Kanban from '../app/kanban'
-import Cards from '../domain/cards'
-import { Movement } from '../domain/types'
+
 import { useHotkeys } from 'react-hotkeys-hook'
 import { useLocation } from 'react-router-dom'
+import Column, { NullColumn } from '../domain/column'
+
+type Movement='forward'|'backward'
 
 interface KanbanContextAPI {
   kanban: Kanban
   move: (from: string, id: string, direction: Movement) => void
   load: (newKanban: Kanban) => void
-  getColumn: (name: string) => Cards
+  getColumn: (name: string) => Column
   add: (columnName: string) => void
   rename: (columnName: string, id: string, title: string) => void
   remove: (columnName: string, id: string) => void
@@ -24,7 +26,7 @@ const KanbanContext = React.createContext<KanbanContextAPI>({
   kanban: new Kanban(),
   move: () => { },
   load: () => { },
-  getColumn: () => { return new Cards() },
+  getColumn: () => { return new NullColumn() },
   add: () => { },
   rename: () => { },
   remove: () => { },
@@ -50,16 +52,16 @@ const WithKanban: React.FC<withKanbanProps> = ({ children }) => {
 
 
   const move = (from: string, id: string, direction: Movement): void => {
-    setKanban(kanban.move(from, id, direction))
+    //setKanban(kanban.move(from, id, direction))
   }
 
   const load = (newKanban: Kanban): void => {
-    const loaded = new Kanban(name, newKanban.data())
-    setKanban(loaded)
+    newKanban.setName(kanban.title())
+    setKanban(newKanban)
   }
 
-  const getColumn = (name: string): Cards => {
-    return kanban.getColumnByName(name).content
+  const getColumn = (name: string): Column => {
+    return kanban.getColumn(name)
   }
 
   const add = (columnName: string) => {
@@ -67,11 +69,11 @@ const WithKanban: React.FC<withKanbanProps> = ({ children }) => {
   }
 
   const rename = (columnName: string, id: string, title: string) => {
-    setKanban(kanban.rename(columnName, id, title))
+    //setKanban(kanban.rename(columnName, id, title))
   }
 
   const remove = (columnName: string, id: string) => {
-    setKanban(kanban.remove(columnName, id))
+    //setKanban(kanban.remove(columnName, id))
   }
 
   const name: string = kanban.title()

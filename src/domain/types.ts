@@ -1,14 +1,12 @@
-import Cards from './cards'
+export type ColumnDescription = {
+  id: string,
+  name: string,
+  content: Array<CardDescription>
+}
+
+export type BoardDescription = Array<ColumnDescription>
 
 export type CardDescription = {
   id: string,
   title: string
 }
-
-export type ColumnDescription = {
-  id: string,
-  name: string,
-  content: Cards
-}
-
-export type Movement = 'forward' | 'backward'

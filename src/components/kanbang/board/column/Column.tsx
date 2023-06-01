@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Cards from '../../../../domain/cards'
 import Card from './card/Card'
 import './column.css'
 import Header from './header/Header'
 import { useKanban } from '../../../../context/kanban'
+import DomainColumn from '../../../../domain/column'
 
 interface ColumnProps {
   name: string,
@@ -15,7 +15,7 @@ const Column: React.FC<ColumnProps> = ({ name }) => {
     getColumn, setSelectedColumn, selectedColumn
   } = useKanban()
 
-  const [cards] = useState<Cards>(getColumn(name))
+  const [cards] = useState<DomainColumn>(getColumn(name))
   const baseClass = 'column'
   const [classes, setClasses] = useState<string>(baseClass)
 
@@ -34,7 +34,7 @@ const Column: React.FC<ColumnProps> = ({ name }) => {
     >
       <Header name={name} onClick={() => add(name)} />
       <span>
-        {cards.data().map((card) => (
+        {cards.getCards().map((card) => (
           <Card
             key={card.id}
             title={card.title}

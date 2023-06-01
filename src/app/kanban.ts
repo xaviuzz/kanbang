@@ -1,8 +1,7 @@
-import Cards from '../domain/cards'
-import Columns from '../domain/columns'
-import { CardDescription, ColumnDescription, Movement } from '../domain/types'
+import Board from '../domain/board'
+import { CardDescription, ColumnDescription } from '../domain/types'
 
-export default class Kanban extends Columns {
+export default class Kanban extends Board {
   private name: string
 
   constructor(name = 'kanbang', data?: Array<ColumnDescription>) {
@@ -12,34 +11,45 @@ export default class Kanban extends Columns {
     this.persist()
   }
 
-  public move(from: string, cardId: string, destination: Movement = 'forward'): Kanban {
-    const result = super.move(from, cardId, destination)
-    this.persist()
-    return new Kanban(this.name, result.data())
-  }
-
-  public update(from: string, content: Cards): Kanban {
-    const result = super.update(from, content)
-    this.persist()
-    return new Kanban(this.name, result.data())
+  public setName(name:string){
+    this.name = name
   }
 
   public add(columnName: string): Kanban {
-    const result = super.add(columnName)
+    super.addCardTo(columnName)
     this.persist()
-    return new Kanban(this.name, result.data())
+    return this.clone()
   }
 
-  public rename(columnName: string, id: string, title: string) {
-    const result = super.rename(columnName, id, title)
+  public move(columnName: string, id:string): Kanban {
+    
     this.persist()
-    return new Kanban(this.name, result.data())
+    return this.clone()
   }
 
-  public remove(columnName: string, id: string) {
-    const result = super.remove(columnName, id)
+  public update(columnName: string, content: Array<CardDescription>): Kanban {
+    
     this.persist()
-    return new Kanban(this.name, result.data())
+    return this.clone()
+  }
+ 
+  private persist() {
+    const serialized: string = this.serialize()
+    localStorage.setItem(this.name, serialized)
+  }
+
+
+  public serialize() {
+    const serialized: string = JSON.stringify(this.getColumnsDescription())
+    return serialized
+  }
+
+  public title(): string {
+    return this.name
+  }
+
+  private clone():Kanban{
+    return new Kanban(this.name,this.getColumnsDescription())
   }
 
   private static recover(name: string): Array<ColumnDescription> | undefined {
@@ -50,39 +60,9 @@ export default class Kanban extends Columns {
   private static hidrate(serialized: string): Array<ColumnDescription> | undefined {
     try {
       const parsed = JSON.parse(serialized)
-      const hidrated: Array<ColumnDescription> =
-        parsed.map((element: { content: CardDescription[] }) => {
-          return {
-            ...element,
-            content: new Cards(element.content as Array<CardDescription>)
-          }
-        })
-      return hidrated
+      return parsed
     } catch (error) {
       return undefined
     }
-  }
-
-  public static recoverFrom(serialized: string): Kanban {
-    const hidrated = this.hidrate(serialized)
-    return new Kanban(this.name, hidrated)
-  }
-
-  private persist() {
-    const serialized: string = this.serialize()
-    localStorage.setItem(this.name, serialized)
-  }
-
-
-  public serialize() {
-    const flat: Array<object> = this.data().map((column: ColumnDescription) => {
-      return { ...column, content: column.content.data() }
-    })
-    const serialized: string = JSON.stringify(flat)
-    return serialized
-  }
-
-  public title(): string {
-    return this.name
   }
 }
