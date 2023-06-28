@@ -4,6 +4,10 @@
 ## Name
 Kangbang 
 
+## Home page
+
+[https://xaviuzz.github.io/kanbang/](https://xaviuzz.github.io/kanbang/)
+
 ## Description
 A Kanban tool 
 
