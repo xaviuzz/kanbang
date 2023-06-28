@@ -9,15 +9,15 @@ services:
       - /app/node_modules/
     ports: 
       - 4000:4000
-    container_name: kangbang
+    container_name: kanbang
   
-  kangbang-e2e:
+  kanbang-e2e:
     build: ./e2e
     volumes:
       - ./e2e:/e2e
       - /e2e/node_modules/
     ports:
       - 9223:9223
-    container_name: kangbang-e2e
+    container_name: kanbang-e2e
 
  

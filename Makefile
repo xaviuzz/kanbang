@@ -1,4 +1,4 @@
-.PHONY: test e2e
+.PHONY: test e2e dist
 build:
 	docker compose build
 
@@ -18,4 +18,7 @@ fix:
 	docker-compose exec kanbang-app npm run lint-fix
 
 e2e:
-	docker compose run kangbang-e2e npm run test
+	docker compose run kanbang-e2e npm run test
+
+dist:
+	docker-compose exec kanbang-app npm run build
