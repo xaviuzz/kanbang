@@ -24,7 +24,7 @@ jobs:
       run: docker-compose -f "docker-compose.yml" run -u root -T kanbang-e2e npm run test
 
     - name: Run dist
-      run: docker-compose -f "docker-compose.yml" exec -T kanbang-app npm run dist
+      run: docker-compose -f "docker-compose.yml" exec -T kanbang-app npm run build
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
