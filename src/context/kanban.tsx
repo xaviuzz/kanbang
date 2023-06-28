@@ -40,7 +40,8 @@ interface withKanbanProps {
 }
 
 const WithKanban: React.FC<withKanbanProps> = ({ children }) => {
-  let fromUrl = useLocation().pathname.slice(1)
+  const pathname = useLocation().pathname
+  let fromUrl = pathname.substring(pathname.lastIndexOf('/') + 1)
   if (fromUrl == '') fromUrl = 'kanbang'
 
   const [kanban, setKanban] = useState<Kanban>(new Kanban(fromUrl))
