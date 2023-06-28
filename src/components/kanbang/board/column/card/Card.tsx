@@ -8,20 +8,20 @@ import { useKanban } from '../../../../../context/kanban'
 type cardProps = {
   id: string,
   title: string,
-  onMove: ( direction: Movement) => void,
-  onChange: ( title: string) => void
+  onMove: (direction: Movement) => void,
+  onChange: (title: string) => void
   onDelete: () => void
 }
 
 const Card: React.FC<cardProps> = ({ title, onMove, onChange, onDelete }) => {
   const [heading, setHeading] = useState<string>(title)
-  const {selectedCard, setSelectedCard}=useKanban()
+  const { selectedCard, setSelectedCard } = useKanban()
   const baseClass = 'card'
   const [classes, setClasses] = useState<string>(baseClass)
 
   useEffect(() => {
     let newClass: string = baseClass
-    if(selectedCard==heading)newClass+=' selected'
+    if (selectedCard == heading) newClass += ' selected'
     setClasses(newClass)
   }, [selectedCard])
 
@@ -39,7 +39,7 @@ const Card: React.FC<cardProps> = ({ title, onMove, onChange, onDelete }) => {
   }
 
   const moveBackward = (): void => {
-    onMove( 'backward')
+    onMove('backward')
   }
 
   const noTitle = (): boolean => {
@@ -52,10 +52,10 @@ const Card: React.FC<cardProps> = ({ title, onMove, onChange, onDelete }) => {
     )
   } else {
     return (
-      <a  
+      <a
         className={classes}
-        aria-label={heading} 
-        onClick={()=>setSelectedCard(heading)}
+        aria-label={heading}
+        onClick={() => setSelectedCard(heading)}
         href='#'
       >
         <div className='card-moving'>

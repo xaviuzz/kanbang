@@ -25,14 +25,17 @@ const Ship:React.FC =()=>{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const reLoad=(event:any)=>{
     const loaded:string = event.target.result
-    console.log(loaded)
     const recovered:Kanban = Kanban.recoverFrom(loaded)
     load(recovered)
   }
 
   return (
     <>
-      <button aria-label="import" onClick={ship} role='menuitem'>
+      <button 
+        aria-label="import" 
+        onClick={ship} 
+        role='menuitem' 
+        title='Import'>
         <FaFileUpload aria-label='A document being uploaded'/>
       </button>
       <input
