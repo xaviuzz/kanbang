@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react'
 import { configDefaults } from 'vitest/config'
 
 export default defineConfig({
+  base:'/kanbang/',
   plugins: [react()],
   server: {
     port: 4000,
